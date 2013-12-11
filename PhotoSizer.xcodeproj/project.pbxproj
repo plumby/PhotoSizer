@@ -14,13 +14,17 @@
 		28DC85EE184FCB6900128718 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC85ED184FCB6900128718 /* main.m */; };
 		28DC85F2184FCB6900128718 /* PSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC85F1184FCB6900128718 /* PSAppDelegate.m */; };
 		28DC85F5184FCB6900128718 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28DC85F3184FCB6900128718 /* Main.storyboard */; };
-		28DC85F8184FCB6900128718 /* PSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC85F7184FCB6900128718 /* PSViewController.m */; };
 		28DC85FA184FCB6900128718 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28DC85F9184FCB6900128718 /* Images.xcassets */; };
 		28DC8601184FCB6900128718 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28DC8600184FCB6900128718 /* XCTest.framework */; };
 		28DC8602184FCB6900128718 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28DC85E1184FCB6900128718 /* Foundation.framework */; };
 		28DC8603184FCB6900128718 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28DC85E5184FCB6900128718 /* UIKit.framework */; };
 		28DC860B184FCB6900128718 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 28DC8609184FCB6900128718 /* InfoPlist.strings */; };
 		28DC860D184FCB6900128718 /* PhotoSizerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC860C184FCB6900128718 /* PhotoSizerTests.m */; };
+		28DC8618184FCD3500128718 /* PSImageSizeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC8617184FCD3500128718 /* PSImageSizeViewController.m */; };
+		28DC861A184FD01400128718 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28DC8619184FD01400128718 /* AssetsLibrary.framework */; };
+		28DC861D184FE3A800128718 /* PSImageSizeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC861C184FE3A800128718 /* PSImageSizeCell.m */; };
+		28DC8620185132EC00128718 /* PSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC861F185132EC00128718 /* PSViewController.m */; };
+		28DC866D1851399D00128718 /* PSImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC866C1851399D00128718 /* PSImageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,14 +49,21 @@
 		28DC85F0184FCB6900128718 /* PSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSAppDelegate.h; sourceTree = "<group>"; };
 		28DC85F1184FCB6900128718 /* PSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PSAppDelegate.m; sourceTree = "<group>"; };
 		28DC85F4184FCB6900128718 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		28DC85F6184FCB6900128718 /* PSViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSViewController.h; sourceTree = "<group>"; };
-		28DC85F7184FCB6900128718 /* PSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PSViewController.m; sourceTree = "<group>"; };
 		28DC85F9184FCB6900128718 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		28DC85FF184FCB6900128718 /* PhotoSizerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoSizerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		28DC8600184FCB6900128718 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		28DC8608184FCB6900128718 /* PhotoSizerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PhotoSizerTests-Info.plist"; sourceTree = "<group>"; };
 		28DC860A184FCB6900128718 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		28DC860C184FCB6900128718 /* PhotoSizerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoSizerTests.m; sourceTree = "<group>"; };
+		28DC8616184FCD3500128718 /* PSImageSizeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSImageSizeViewController.h; sourceTree = "<group>"; };
+		28DC8617184FCD3500128718 /* PSImageSizeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSImageSizeViewController.m; sourceTree = "<group>"; };
+		28DC8619184FD01400128718 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		28DC861B184FE3A800128718 /* PSImageSizeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSImageSizeCell.h; sourceTree = "<group>"; };
+		28DC861C184FE3A800128718 /* PSImageSizeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSImageSizeCell.m; sourceTree = "<group>"; };
+		28DC861E185132EC00128718 /* PSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSViewController.h; sourceTree = "<group>"; };
+		28DC861F185132EC00128718 /* PSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSViewController.m; sourceTree = "<group>"; };
+		28DC866B1851399D00128718 /* PSImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSImageViewController.h; sourceTree = "<group>"; };
+		28DC866C1851399D00128718 /* PSImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSImageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28DC861A184FD01400128718 /* AssetsLibrary.framework in Frameworks */,
 				28DC85E4184FCB6900128718 /* CoreGraphics.framework in Frameworks */,
 				28DC85E6184FCB6900128718 /* UIKit.framework in Frameworks */,
 				28DC85E2184FCB6900128718 /* Foundation.framework in Frameworks */,
@@ -82,6 +94,8 @@
 		28DC85D5184FCB6900128718 = {
 			isa = PBXGroup;
 			children = (
+				28DC861E185132EC00128718 /* PSViewController.h */,
+				28DC861F185132EC00128718 /* PSViewController.m */,
 				28DC85E7184FCB6900128718 /* PhotoSizer */,
 				28DC8606184FCB6900128718 /* PhotoSizerTests */,
 				28DC85E0184FCB6900128718 /* Frameworks */,
@@ -101,6 +115,7 @@
 		28DC85E0184FCB6900128718 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				28DC8619184FD01400128718 /* AssetsLibrary.framework */,
 				28DC85E1184FCB6900128718 /* Foundation.framework */,
 				28DC85E3184FCB6900128718 /* CoreGraphics.framework */,
 				28DC85E5184FCB6900128718 /* UIKit.framework */,
@@ -112,11 +127,15 @@
 		28DC85E7184FCB6900128718 /* PhotoSizer */ = {
 			isa = PBXGroup;
 			children = (
+				28DC8616184FCD3500128718 /* PSImageSizeViewController.h */,
+				28DC8617184FCD3500128718 /* PSImageSizeViewController.m */,
 				28DC85F0184FCB6900128718 /* PSAppDelegate.h */,
 				28DC85F1184FCB6900128718 /* PSAppDelegate.m */,
 				28DC85F3184FCB6900128718 /* Main.storyboard */,
-				28DC85F6184FCB6900128718 /* PSViewController.h */,
-				28DC85F7184FCB6900128718 /* PSViewController.m */,
+				28DC866B1851399D00128718 /* PSImageViewController.h */,
+				28DC866C1851399D00128718 /* PSImageViewController.m */,
+				28DC861B184FE3A800128718 /* PSImageSizeCell.h */,
+				28DC861C184FE3A800128718 /* PSImageSizeCell.m */,
 				28DC85F9184FCB6900128718 /* Images.xcassets */,
 				28DC85E8184FCB6900128718 /* Supporting Files */,
 			);
@@ -251,8 +270,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				28DC85EE184FCB6900128718 /* main.m in Sources */,
-				28DC85F8184FCB6900128718 /* PSViewController.m in Sources */,
+				28DC861D184FE3A800128718 /* PSImageSizeCell.m in Sources */,
 				28DC85F2184FCB6900128718 /* PSAppDelegate.m in Sources */,
+				28DC8618184FCD3500128718 /* PSImageSizeViewController.m in Sources */,
+				28DC8620185132EC00128718 /* PSViewController.m in Sources */,
+				28DC866D1851399D00128718 /* PSImageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
