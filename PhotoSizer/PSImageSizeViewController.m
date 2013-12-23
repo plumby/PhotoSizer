@@ -7,25 +7,18 @@
 //
 
 #import <AssetsLibrary/AssetsLibrary.h>
+#import <MediaPlayer/MediaPlayer.h>
+
 #import "PSImageSizeViewController.h"
 #import "PSImageSizeCell.h"
-#import "PSImageViewController.h"
+#import "PSAssetViewController.h"
+#import "PSImageData.h"
 
 @interface PSImageSizeViewController ()
 
 @end
 
 @implementation PSImageSizeViewController
-
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (NSNumber *)getMilliseconds
 {
@@ -34,6 +27,8 @@
 
 -(void) logTime:(NSString*)message
 {
+    NSLog(@"Entering %s",__PRETTY_FUNCTION__);
+    
     NSDate *today = [NSDate dateWithTimeIntervalSinceNow:0];
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init] ;
     [dateFormat setDateFormat:@"ss"];
@@ -42,26 +37,44 @@
     NSString*mystamp = [NSString stringWithFormat:@"%@:%@",dateString,[self getMilliseconds]];
     
     NSLog(@"%@ %@", message,mystamp);
+    NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
+
 }
 
 - (void)viewDidLoad
 {
+    NSLog(@"Entering %s",__PRETTY_FUNCTION__);
     [super viewDidLoad];
     
+    
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleGray];
+    
+    [tableView addSubview:activityIndicator];
+    [activityIndicator setHidden:FALSE];
+    [activityIndicator setHidesWhenStopped:FALSE];
+    activityIndicator.center = tableView.center;
+    
+    [activityIndicator startAnimating];
+    [self.view setUserInteractionEnabled:NO];
+    [sortButton setEnabled:NO];
+    
+        //[NSThread detachNewThreadSelector:@selector(loadAssets) toTarget:self withObject:nil];
+    [self loadAssets];
+    NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
+
+}
+
+
+
+-(void)loadAssets
+{
+    NSLog(@"Entering %s",__PRETTY_FUNCTION__);
     
     _assets = [@[] mutableCopy];
     __block NSMutableArray *tmpAssets = [@[] mutableCopy];
         // 1
     
-    [self logTime:@"Getting Asset Library"];
-    
     ALAssetsLibrary *assetsLibrary = [PSImageSizeViewController defaultAssetsLibrary];
-    
-    
-    [self logTime:@"Got Asset Library"];
-    
-    
-        // 2
     [
         assetsLibrary enumerateGroupsWithTypes:ALAssetsGroupAll usingBlock:^(ALAssetsGroup *group, BOOL *stop)
         {
@@ -70,60 +83,53 @@
                 {
                     if(result)
                     {
-                    // 3
-                        [tmpAssets addObject:result];
-                            //NSLog(@"%@",[result valueForProperty:ALAssetPropertyAssetURL]);
+                        PSImageData* imgData=[[PSImageData alloc]init];
+                        
+                        imgData.assett=result;
+                        imgData.imgSize=result.defaultRepresentation.size;
+                        [tmpAssets addObject:imgData];
                     }
                 }
             ];
         
-            // 4
-            //NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO];
-            //self.assets = [tmpAssets sortedArrayUsingDescriptors:@[sort]];
-        
-        
             self.assets=tmpAssets;
-        
-            [self logTime:@"About to sort"];
             
-                //[self.tableView reloadData];
-       
-            /*
-            self.assets =
-            [
-                tmpAssets sortedArrayUsingComparator:^NSComparisonResult(id a, id b)
-                {
-                                    
-                    long long sizeA=[(ALAsset*)a defaultRepresentation].size;
-                    long long sizeB=[(ALAsset*)b defaultRepresentation].size;
-                    
-                    return (sizeA < sizeB);
-                }
-            ];
-             
-            [self logTime:@"Sorted"];
-            */
-        
-            //self.assets = tmpAssets;
-        
-            // 5
-            [self.tableView reloadData];
+            [self doSorting];
         }
         failureBlock:^(NSError *error)
         {
             NSLog(@"Error loading images %@", error);
         }
      ];
+    
+    NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
+
 }
 
 -(IBAction)sort
 {
-        //    UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge] ;
-        //    [self.view addSubview: activityView];
-        //activityView.center = CGPointMake(240,160);
+    NSLog(@"Entering %s",__PRETTY_FUNCTION__);
     
-    [activityView startAnimating];
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleGray];
     
+    [tableView addSubview:activityIndicator];
+    [activityIndicator setHidden:FALSE];
+    [activityIndicator setHidesWhenStopped:FALSE];
+    activityIndicator.center = tableView.center;
+    
+    [activityIndicator startAnimating];
+    [self.view setUserInteractionEnabled:NO];
+    [sortButton setEnabled:NO];
+    
+    [NSThread detachNewThreadSelector:@selector(doSorting) toTarget:self withObject:nil];
+    NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
+
+}
+
+-(void)doSorting
+{
+    NSLog(@"Entering %s",__PRETTY_FUNCTION__);
+
     NSArray *tmpAssets=self.assets;
     
     __block int i=0;
@@ -132,8 +138,11 @@
     [
      tmpAssets sortedArrayUsingComparator:^NSComparisonResult(id a, id b)
      {
-         long long sizeA=[(ALAsset*)a defaultRepresentation].size;
-         long long sizeB=[(ALAsset*)b defaultRepresentation].size;
+            long long sizeA=[(PSImageData*)a imgSize];
+            long long sizeB=[(PSImageData*)b imgSize];
+         
+             //long long sizeA=[(ALAsset*)a defaultRepresentation].size;
+             //long long sizeB=[(ALAsset*)b defaultRepresentation].size;
          
          ++i;
          
@@ -141,27 +150,40 @@
      }
      ];
     
-    [activityView stopAnimating];
-    
-    
-    [self logTime:[NSString stringWithFormat:@"sorted %i",i] ];
+    [tableView reloadData];
+
+    [sortButton setEnabled:TRUE];
+
+    [self.view setUserInteractionEnabled:TRUE];
+    [activityIndicator setHidesWhenStopped:TRUE];
+    [activityIndicator stopAnimating];
+    NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
+
 }
 
 
 - (void)didReceiveMemoryWarning
 {
+    NSLog(@"Entering %s",__PRETTY_FUNCTION__);
+
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
+    
 }
 
 
 + (ALAssetsLibrary *)defaultAssetsLibrary
 {
+    NSLog(@"Entering %s",__PRETTY_FUNCTION__);
+    
     static dispatch_once_t pred = 0;
     static ALAssetsLibrary *library = nil;
     dispatch_once(&pred, ^{
         library = [[ALAssetsLibrary alloc] init];
     });
+    
+    NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
     return library;
 }
 
@@ -171,21 +193,32 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    NSLog(@"Entering %s",__PRETTY_FUNCTION__);
+    
     // Return the number of sections.
+    
+    NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    NSLog(@"Entering %s",__PRETTY_FUNCTION__);
+    
     // Return the number of rows in the section.
+    NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
+    
     return [self.assets count];
 }
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)thisTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"Entering %s",__PRETTY_FUNCTION__);
+    
     static NSString *CellIdentifier = @"Cell";
-    PSImageSizeCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    ALAsset *asset = self.assets[indexPath.row];
+    PSImageSizeCell *cell = [thisTableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    PSImageData* imgData=self.assets[indexPath.row];
+    ALAsset *asset =imgData.assett;
         //UIImage *image=[UIImage imageWithCGImage:[asset thumbnail]];
         //    NSURL* s=[asset valueForProperty:ALAssetPropertyAssetURL];
     ALAssetRepresentation *assetRepresentation = [asset defaultRepresentation];
@@ -210,16 +243,56 @@
     
         //[s absoluteString];
     
+    NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
+    
     return cell;
 }
 
+
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    NSLog(@"Entering %s",__PRETTY_FUNCTION__);
+    
+    if ([identifier isEqualToString:@"showDetail2"])
+    {
+        NSIndexPath *indexPath = [tableView indexPathForSelectedRow];
+        PSImageData* imgData=self.assets[indexPath.row];
+        ALAsset *asset =imgData.assett;
+       
+        ALAssetRepresentation *rep = [asset defaultRepresentation];
+        
+        MPMoviePlayerViewController *moviePlayerVC =[[MPMoviePlayerViewController alloc] initWithContentURL:[rep url]];
+        
+        /*
+         [[NSNotificationCenter defaultCenter]
+         addObserver:self
+         selector:@selector(movieFinishedCallback:) name:MPMoviePlayerPlaybackDidFinishNotification
+         object:[moviePlayerVC moviePlayer]];
+         */
+        
+        [moviePlayerVC.view setFrame: self.view.bounds];
+        [self.view addSubview:moviePlayerVC.view];
+        
+        return false;
+    }
+    NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
+    return true;
+}
+
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([[segue identifier] isEqualToString:@"showDetail"]) {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        ALAsset *asset = self.assets[indexPath.row];
+    NSLog(@"Entering %s",__PRETTY_FUNCTION__);
+    
+    if ([[segue identifier] isEqualToString:@"showDetail"])
+    {
+        NSIndexPath *indexPath = [tableView indexPathForSelectedRow];
+        PSImageData* imgData=self.assets[indexPath.row];
+        ALAsset *asset =imgData.assett;
         [[segue destinationViewController] setAsset:asset];
     }
+    NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
+    
 }
 
 /*
@@ -272,5 +345,6 @@
 }
 
  */
+
 
 @end

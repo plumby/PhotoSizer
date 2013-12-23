@@ -8,11 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import <AssetsLibrary/AssetsLibrary.h>
+#import <MediaPlayer/MediaPlayer.h>
 
 
-@interface PSImageViewController : UIViewController
+
+@interface PSAssetViewController : UIViewController
 {
     IBOutlet UIImageView* imageView;
+    IBOutlet UIView* assetView;
+    MPMoviePlayerController* theMovie;
 }
 
 @property (strong, nonatomic) ALAsset* asset;

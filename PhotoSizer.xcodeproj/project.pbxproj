@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		287DE374185A572E00D58746 /* PSImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 287DE373185A572E00D58746 /* PSImageData.m */; };
 		28DC85E2184FCB6900128718 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28DC85E1184FCB6900128718 /* Foundation.framework */; };
 		28DC85E4184FCB6900128718 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28DC85E3184FCB6900128718 /* CoreGraphics.framework */; };
 		28DC85E6184FCB6900128718 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28DC85E5184FCB6900128718 /* UIKit.framework */; };
@@ -24,7 +25,7 @@
 		28DC861A184FD01400128718 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28DC8619184FD01400128718 /* AssetsLibrary.framework */; };
 		28DC861D184FE3A800128718 /* PSImageSizeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC861C184FE3A800128718 /* PSImageSizeCell.m */; };
 		28DC8620185132EC00128718 /* PSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC861F185132EC00128718 /* PSViewController.m */; };
-		28DC866D1851399D00128718 /* PSImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC866C1851399D00128718 /* PSImageViewController.m */; };
+		28DC866D1851399D00128718 /* PSAssetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC866C1851399D00128718 /* PSAssetViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		287DE372185A572E00D58746 /* PSImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSImageData.h; sourceTree = "<group>"; };
+		287DE373185A572E00D58746 /* PSImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSImageData.m; sourceTree = "<group>"; };
 		28DC85DE184FCB6900128718 /* PhotoSizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoSizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28DC85E1184FCB6900128718 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		28DC85E3184FCB6900128718 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -62,8 +65,8 @@
 		28DC861C184FE3A800128718 /* PSImageSizeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSImageSizeCell.m; sourceTree = "<group>"; };
 		28DC861E185132EC00128718 /* PSViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSViewController.h; sourceTree = "<group>"; };
 		28DC861F185132EC00128718 /* PSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSViewController.m; sourceTree = "<group>"; };
-		28DC866B1851399D00128718 /* PSImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSImageViewController.h; sourceTree = "<group>"; };
-		28DC866C1851399D00128718 /* PSImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSImageViewController.m; sourceTree = "<group>"; };
+		28DC866B1851399D00128718 /* PSAssetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSAssetViewController.h; sourceTree = "<group>"; };
+		28DC866C1851399D00128718 /* PSAssetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSAssetViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,13 +130,15 @@
 		28DC85E7184FCB6900128718 /* PhotoSizer */ = {
 			isa = PBXGroup;
 			children = (
+				287DE372185A572E00D58746 /* PSImageData.h */,
+				287DE373185A572E00D58746 /* PSImageData.m */,
 				28DC8616184FCD3500128718 /* PSImageSizeViewController.h */,
 				28DC8617184FCD3500128718 /* PSImageSizeViewController.m */,
 				28DC85F0184FCB6900128718 /* PSAppDelegate.h */,
 				28DC85F1184FCB6900128718 /* PSAppDelegate.m */,
 				28DC85F3184FCB6900128718 /* Main.storyboard */,
-				28DC866B1851399D00128718 /* PSImageViewController.h */,
-				28DC866C1851399D00128718 /* PSImageViewController.m */,
+				28DC866B1851399D00128718 /* PSAssetViewController.h */,
+				28DC866C1851399D00128718 /* PSAssetViewController.m */,
 				28DC861B184FE3A800128718 /* PSImageSizeCell.h */,
 				28DC861C184FE3A800128718 /* PSImageSizeCell.m */,
 				28DC85F9184FCB6900128718 /* Images.xcassets */,
@@ -270,11 +275,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				28DC85EE184FCB6900128718 /* main.m in Sources */,
+				287DE374185A572E00D58746 /* PSImageData.m in Sources */,
 				28DC861D184FE3A800128718 /* PSImageSizeCell.m in Sources */,
 				28DC85F2184FCB6900128718 /* PSAppDelegate.m in Sources */,
 				28DC8618184FCD3500128718 /* PSImageSizeViewController.m in Sources */,
 				28DC8620185132EC00128718 /* PSViewController.m in Sources */,
-				28DC866D1851399D00128718 /* PSImageViewController.m in Sources */,
+				28DC866D1851399D00128718 /* PSAssetViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,6 +489,7 @@
 				28DC8612184FCB6900128718 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		28DC8613184FCB6900128718 /* Build configuration list for PBXNativeTarget "PhotoSizerTests" */ = {
 			isa = XCConfigurationList;
@@ -491,6 +498,7 @@
 				28DC8615184FCB6900128718 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

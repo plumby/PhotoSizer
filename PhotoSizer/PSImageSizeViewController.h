@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PSImageSizeViewController : UITableViewController
+@interface PSImageSizeViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
-    IBOutlet UIActivityIndicatorView *activityView;
+    UIActivityIndicatorView *activityIndicator;
+    IBOutlet UIBarButtonItem* sortButton;
+    IBOutlet UITableView *tableView;
 }
 
 @property(nonatomic, strong) NSArray *assets;
