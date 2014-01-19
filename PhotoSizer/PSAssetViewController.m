@@ -64,15 +64,6 @@
     }
 }
 
-+ (UIImage *)imageWithImage2:(UIImage *)image scaledToSize:(CGSize)newSize
-{
-    UIGraphicsBeginImageContext(newSize);
-    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    
-    UIGraphicsEndImageContext();
-    return newImage;
-}
 
 
 + (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)size {
@@ -109,73 +100,6 @@
 }
 
             
-
-
-- (void)configureView2
-{
-        // Update the user interface for the detail item.
-    
-    if (self.asset)
-    {
-        if ([[self.asset valueForProperty:ALAssetPropertyType] isEqualToString:ALAssetTypeVideo]) {
-                // asset is a video
-            ALAssetRepresentation *rep = [self.asset defaultRepresentation];
-            
-            
-                //MPMoviePlayerViewController *moviePlayerVC =[[MPMoviePlayerViewController alloc] initWithContentURL:[rep url]];
-
-            
-            
-            
-                //[moviePlayerVC.view setFrame: self.view.bounds];
-                //[self.view addSubview:moviePlayerVC.view];
-            
-                //            MPMoviePlayerController *player = //[moviePlayerVC moviePlayer];
-            MPMoviePlayerController *player =
-                [[MPMoviePlayerController alloc] initWithContentURL: [rep url]];
-            
-            [[NSNotificationCenter defaultCenter]
-             addObserver:self
-             selector:@selector(myMovieFinishedCallback:) name:MPMoviePlayerPlaybackDidFinishNotification
-             object:player];
-            
-            [[NSNotificationCenter defaultCenter]
-             addObserver:self
-             selector:@selector(MPMoviePlayerLoadStateDidChangeNotification:) name:MPMoviePlayerLoadStateDidChangeNotification
-             object:player];
-            
-            
-            [player.view setFrame: assetView.bounds];  // player's frame must match parent's
-            [player prepareToPlay];
-            [assetView addSubview: player.view];
-            
-            [player play];
-        }
-        else
-        {
-                // asset is an image
-            
-            imageView=[[UIImageView alloc]initWithFrame:assetView.bounds];
-            
-            ALAssetRepresentation *rep = [self.asset defaultRepresentation];
-            CGFloat scale  = 1;
-            UIImageOrientation orientation = UIImageOrientationUp;
-            
-            UIImage *image = [UIImage imageWithCGImage:[rep fullScreenImage] scale:scale orientation:orientation];
-            imageView.image=image;
-            
-            [assetView addSubview:imageView];
-            
-        /*
-        NSNumber* orientationValue = [[rep metadata] objectForKey:@"Orientation"];
-        if (orientationValue != nil) {
-            orientation = [orientationValue intValue];
-        }
-         */
-        
-        }
-    }
-}
 
 
 

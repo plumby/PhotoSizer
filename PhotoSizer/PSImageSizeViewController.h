@@ -13,9 +13,14 @@
     UIActivityIndicatorView *activityIndicator;
     IBOutlet UIBarButtonItem* sortButton;
     IBOutlet UITableView *tableView;
+    IBOutlet UISegmentedControl* segmentControl;
+    BOOL includeVideo;
+    BOOL includePhotos;
 }
 
 @property(nonatomic, strong) NSArray *assets;
+
+- (IBAction)segmentSwitch:(id)sender;
 
 - (IBAction) sort;
 

@@ -43,9 +43,12 @@
 
 - (void)viewDidLoad
 {
-    NSLog(@"Entering %s",__PRETTY_FUNCTION__);
+        //NSLog(@"Entering %s",__PRETTY_FUNCTION__);
     [super viewDidLoad];
+    includePhotos=YES;
+    includeVideo=YES;
     
+    [segmentControl setSelectedSegmentIndex:2];
     
     activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleGray];
     
@@ -60,7 +63,7 @@
     
         //[NSThread detachNewThreadSelector:@selector(loadAssets) toTarget:self withObject:nil];
     [self loadAssets];
-    NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
+        //NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
 
 }
 
@@ -68,7 +71,7 @@
 
 -(void)loadAssets
 {
-    NSLog(@"Entering %s",__PRETTY_FUNCTION__);
+        //NSLog(@"Entering %s",__PRETTY_FUNCTION__);
     
     _assets = [@[] mutableCopy];
     __block NSMutableArray *tmpAssets = [@[] mutableCopy];
@@ -85,9 +88,16 @@
                     {
                         PSImageData* imgData=[[PSImageData alloc]init];
                         
-                        imgData.assett=result;
-                        imgData.imgSize=result.defaultRepresentation.size;
-                        [tmpAssets addObject:imgData];
+                        if (
+                            (includePhotos && [[result valueForProperty:@"ALAssetPropertyType"] isEqualToString:@"ALAssetTypePhoto"])
+                            ||
+                            (includeVideo && [[result valueForProperty:@"ALAssetPropertyType"] isEqualToString:@"ALAssetTypeVideo"])
+                        )
+                        {
+                            imgData.assett=result;
+                            imgData.imgSize=result.defaultRepresentation.size;
+                            [tmpAssets addObject:imgData];
+                        }
                     }
                 }
             ];
@@ -102,13 +112,13 @@
         }
      ];
     
-    NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
+        //NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
 
 }
 
 -(IBAction)sort
 {
-    NSLog(@"Entering %s",__PRETTY_FUNCTION__);
+        //NSLog(@"Entering %s",__PRETTY_FUNCTION__);
     
     activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleGray];
     
@@ -122,13 +132,34 @@
     [sortButton setEnabled:NO];
     
     [NSThread detachNewThreadSelector:@selector(doSorting) toTarget:self withObject:nil];
-    NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
+        //NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
 
 }
 
+- (IBAction)segmentSwitch:(id)sender {
+    UISegmentedControl *segmentedControl = (UISegmentedControl *) sender;
+    NSInteger selectedSegment = segmentedControl.selectedSegmentIndex;
+    
+    if (selectedSegment == 0)
+    {
+        includePhotos=YES;
+        includeVideo=NO;
+    }
+    else if (selectedSegment == 1)
+    {
+        includePhotos=NO;
+        includeVideo=YES;
+    }
+    else{
+        includePhotos=YES;
+        includeVideo=YES;
+    }
+    
+    [self loadAssets];
+}
 -(void)doSorting
 {
-    NSLog(@"Entering %s",__PRETTY_FUNCTION__);
+        //NSLog(@"Entering %s",__PRETTY_FUNCTION__);
 
     NSArray *tmpAssets=self.assets;
     
@@ -157,25 +188,25 @@
     [self.view setUserInteractionEnabled:TRUE];
     [activityIndicator setHidesWhenStopped:TRUE];
     [activityIndicator stopAnimating];
-    NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
+        //NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
 
 }
 
 
 - (void)didReceiveMemoryWarning
 {
-    NSLog(@"Entering %s",__PRETTY_FUNCTION__);
+        //NSLog(@"Entering %s",__PRETTY_FUNCTION__);
 
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-    NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
+        //NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
     
 }
 
 
 + (ALAssetsLibrary *)defaultAssetsLibrary
 {
-    NSLog(@"Entering %s",__PRETTY_FUNCTION__);
+        //NSLog(@"Entering %s",__PRETTY_FUNCTION__);
     
     static dispatch_once_t pred = 0;
     static ALAssetsLibrary *library = nil;
@@ -183,7 +214,7 @@
         library = [[ALAssetsLibrary alloc] init];
     });
     
-    NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
+        //NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
     return library;
 }
 
@@ -193,27 +224,27 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    NSLog(@"Entering %s",__PRETTY_FUNCTION__);
+        //NSLog(@"Entering %s",__PRETTY_FUNCTION__);
     
     // Return the number of sections.
     
-    NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
+        //NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"Entering %s",__PRETTY_FUNCTION__);
+        //NSLog(@"Entering %s",__PRETTY_FUNCTION__);
     
     // Return the number of rows in the section.
-    NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
+        //NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
     
     return [self.assets count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)thisTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"Entering %s",__PRETTY_FUNCTION__);
+        //NSLog(@"Entering %s",__PRETTY_FUNCTION__);
     
     static NSString *CellIdentifier = @"Cell";
     PSImageSizeCell *cell = [thisTableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
@@ -243,7 +274,7 @@
     
         //[s absoluteString];
     
-    NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
+        //NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
     
     return cell;
 }
@@ -251,7 +282,7 @@
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
-    NSLog(@"Entering %s",__PRETTY_FUNCTION__);
+        //NSLog(@"Entering %s",__PRETTY_FUNCTION__);
     
     if ([identifier isEqualToString:@"showDetail2"])
     {
@@ -275,14 +306,14 @@
         
         return false;
     }
-    NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
+        //NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
     return true;
 }
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    NSLog(@"Entering %s",__PRETTY_FUNCTION__);
+        //NSLog(@"Entering %s",__PRETTY_FUNCTION__);
     
     if ([[segue identifier] isEqualToString:@"showDetail"])
     {
@@ -291,32 +322,93 @@
         ALAsset *asset =imgData.assett;
         [[segue destinationViewController] setAsset:asset];
     }
-    NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
+        //NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
     
 }
 
-/*
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
 // Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)localTableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        PSImageData* imgData=self.assets[indexPath.row];
+        ALAsset *asset =imgData.assett;
+        
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [localTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     }   
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
+
+
+
+-(void)saveToFolder:(UIImage*)image
+{
+    ALAssetsLibrary *assetsLibrary = [PSImageSizeViewController defaultAssetsLibrary];
+    
+    __weak ALAssetsLibrary *lib = assetsLibrary;
+    
+    [assetsLibrary addAssetsGroupAlbumWithName:@"My Photo Album" resultBlock:^(ALAssetsGroup *group) {
+        
+            ///checks if group previously created
+        if(group == nil){
+            
+                //enumerate albums
+            [lib enumerateGroupsWithTypes:ALAssetsGroupAlbum
+                               usingBlock:^(ALAssetsGroup *g, BOOL *stop)
+             {
+                     //if the album is equal to our album
+                 if ([[g valueForProperty:ALAssetsGroupPropertyName] isEqualToString:@"My Photo Album"]) {
+                     
+                         //save image
+                     [lib writeImageDataToSavedPhotosAlbum:UIImagePNGRepresentation(image) metadata:nil
+                                           completionBlock:^(NSURL *assetURL, NSError *error) {
+                                               
+                                                   //then get the image asseturl
+                                               [lib assetForURL:assetURL
+                                                    resultBlock:^(ALAsset *asset) {
+                                                            //put it into our album
+                                                        [g addAsset:asset];
+                                                    } failureBlock:^(NSError *error) {
+                                                        
+                                                    }];
+                                           }];
+                     
+                 }
+             }failureBlock:^(NSError *error){
+                 
+             }];
+            
+        }else{
+                // save image directly to library
+            [lib writeImageDataToSavedPhotosAlbum:UIImagePNGRepresentation(image) metadata:nil
+                                  completionBlock:^(NSURL *assetURL, NSError *error) {
+                                      
+                                      [lib assetForURL:assetURL
+                                           resultBlock:^(ALAsset *asset) {
+                                               
+                                               [group addAsset:asset];
+                                               
+                                           } failureBlock:^(NSError *error) {
+                                               
+                                           }];
+                                  }];
+        }
+        
+    } failureBlock:^(NSError *error) {
+        
+    }];
+}
+
 
 /*
 // Override to support rearranging the table view.
