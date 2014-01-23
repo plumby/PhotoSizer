@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		287DE374185A572E00D58746 /* PSImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 287DE373185A572E00D58746 /* PSImageData.m */; };
+		28AF0FF9188C7C6A00314051 /* PSImageSizeViewControllerV2.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AF0FF8188C7C6A00314051 /* PSImageSizeViewControllerV2.m */; };
+		28AF0FFC188F241800314051 /* PSAlbumData.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AF0FFB188F241800314051 /* PSAlbumData.m */; };
 		28CA37B218873869009C172B /* PSAlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28CA37B118873869009C172B /* PSAlbumViewController.m */; };
 		28DC85E2184FCB6900128718 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28DC85E1184FCB6900128718 /* Foundation.framework */; };
 		28DC85E4184FCB6900128718 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28DC85E3184FCB6900128718 /* CoreGraphics.framework */; };
@@ -42,6 +44,11 @@
 /* Begin PBXFileReference section */
 		287DE372185A572E00D58746 /* PSImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSImageData.h; sourceTree = "<group>"; };
 		287DE373185A572E00D58746 /* PSImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSImageData.m; sourceTree = "<group>"; };
+		28AF0FF7188C7C6A00314051 /* PSImageSizeViewControllerV2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSImageSizeViewControllerV2.h; sourceTree = "<group>"; };
+		28AF0FF8188C7C6A00314051 /* PSImageSizeViewControllerV2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSImageSizeViewControllerV2.m; sourceTree = "<group>"; };
+		28AF0FFA188F241800314051 /* PSAlbumData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSAlbumData.h; sourceTree = "<group>"; };
+		28AF0FFB188F241800314051 /* PSAlbumData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSAlbumData.m; sourceTree = "<group>"; };
+		28AF0FFD1890692700314051 /* PSCompletionWatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSCompletionWatcher.h; sourceTree = "<group>"; };
 		28CA37B018873869009C172B /* PSAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSAlbumViewController.h; sourceTree = "<group>"; };
 		28CA37B118873869009C172B /* PSAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSAlbumViewController.m; sourceTree = "<group>"; };
 		28DC85DE184FCB6900128718 /* PhotoSizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoSizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -148,6 +155,11 @@
 				28DC85E8184FCB6900128718 /* Supporting Files */,
 				28CA37B018873869009C172B /* PSAlbumViewController.h */,
 				28CA37B118873869009C172B /* PSAlbumViewController.m */,
+				28AF0FF7188C7C6A00314051 /* PSImageSizeViewControllerV2.h */,
+				28AF0FF8188C7C6A00314051 /* PSImageSizeViewControllerV2.m */,
+				28AF0FFA188F241800314051 /* PSAlbumData.h */,
+				28AF0FFB188F241800314051 /* PSAlbumData.m */,
+				28AF0FFD1890692700314051 /* PSCompletionWatcher.h */,
 			);
 			path = PhotoSizer;
 			sourceTree = "<group>";
@@ -281,10 +293,12 @@
 			files = (
 				28DC85EE184FCB6900128718 /* main.m in Sources */,
 				287DE374185A572E00D58746 /* PSImageData.m in Sources */,
+				28AF0FFC188F241800314051 /* PSAlbumData.m in Sources */,
 				28DC861D184FE3A800128718 /* PSImageSizeCell.m in Sources */,
 				28DC85F2184FCB6900128718 /* PSAppDelegate.m in Sources */,
 				28DC8618184FCD3500128718 /* PSImageSizeViewController.m in Sources */,
 				28CA37B218873869009C172B /* PSAlbumViewController.m in Sources */,
+				28AF0FF9188C7C6A00314051 /* PSImageSizeViewControllerV2.m in Sources */,
 				28DC8620185132EC00128718 /* PSViewController.m in Sources */,
 				28DC866D1851399D00128718 /* PSAssetViewController.m in Sources */,
 			);

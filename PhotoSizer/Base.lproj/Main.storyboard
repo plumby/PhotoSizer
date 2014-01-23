@@ -29,7 +29,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="IWi-00-8X9" kind="push" trigger="accessoryAction" id="SX0-qT-M4q"/>
+                                            <segue destination="IWi-00-8X9" kind="push" identifier="showPhotos" id="yzV-5N-bMT"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -50,10 +50,10 @@
             </objects>
             <point key="canvasLocation" x="-349" y="-123"/>
         </scene>
-        <!--Image Size View Controller - Images-->
+        <!--Image Size View ControllerV2 - Images-->
         <scene sceneID="8ce-yZ-lJw">
             <objects>
-                <viewController id="IWi-00-8X9" customClass="PSImageSizeViewController" sceneMemberID="viewController">
+                <viewController id="IWi-00-8X9" customClass="PSImageSizeViewControllerV2" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8n3-qQ-dcC"/>
                         <viewControllerLayoutGuide type="bottom" id="Sbt-Td-4R1"/>
@@ -113,7 +113,7 @@
                                                 <segment title="Both"/>
                                             </segments>
                                             <connections>
-                                                <action selector="segmentSwitch:" destination="IWi-00-8X9" eventType="valueChanged" id="lOH-Tl-iAS"/>
+                                                <action selector="segmentSwitch:" destination="IWi-00-8X9" eventType="valueChanged" id="o5H-e9-5w3"/>
                                             </connections>
                                         </segmentedControl>
                                     </barButtonItem>
@@ -126,7 +126,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="T0b-yw-5CA"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="segmentControl" destination="deJ-Bj-dYq" id="C4i-Gn-0uH"/>
+                        <outlet property="segmentControl" destination="deJ-Bj-dYq" id="V8p-IQ-qYi"/>
                         <outlet property="tableView" destination="Eou-j4-MSE" id="Ph0-QO-E4g"/>
                     </connections>
                 </viewController>

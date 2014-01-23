@@ -11,6 +11,8 @@
 @interface PSAlbumViewController : UIViewController  <UITableViewDataSource, UITableViewDelegate>
 {
     IBOutlet UITableView *tableView;
+    NSArray * assets;
 }
+
 
 @end

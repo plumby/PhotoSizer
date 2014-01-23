@@ -116,25 +116,6 @@
 
 }
 
--(IBAction)sort
-{
-        //NSLog(@"Entering %s",__PRETTY_FUNCTION__);
-    
-    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleGray];
-    
-    [tableView addSubview:activityIndicator];
-    [activityIndicator setHidden:FALSE];
-    [activityIndicator setHidesWhenStopped:FALSE];
-    activityIndicator.center = tableView.center;
-    
-    [activityIndicator startAnimating];
-    [self.view setUserInteractionEnabled:NO];
-    [sortButton setEnabled:NO];
-    
-    [NSThread detachNewThreadSelector:@selector(doSorting) toTarget:self withObject:nil];
-        //NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
-
-}
 
 - (IBAction)segmentSwitch:(id)sender {
     UISegmentedControl *segmentedControl = (UISegmentedControl *) sender;
@@ -157,6 +138,28 @@
     
     [self loadAssets];
 }
+
+-(IBAction)sort
+{
+        //NSLog(@"Entering %s",__PRETTY_FUNCTION__);
+    
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleGray];
+    
+    [tableView addSubview:activityIndicator];
+    [activityIndicator setHidden:FALSE];
+    [activityIndicator setHidesWhenStopped:FALSE];
+    activityIndicator.center = tableView.center;
+    
+    [activityIndicator startAnimating];
+    [self.view setUserInteractionEnabled:NO];
+    [sortButton setEnabled:NO];
+    
+    [NSThread detachNewThreadSelector:@selector(doSorting) toTarget:self withObject:nil];
+        //NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
+
+}
+
+
 -(void)doSorting
 {
         //NSLog(@"Entering %s",__PRETTY_FUNCTION__);
@@ -338,8 +341,8 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
-        PSImageData* imgData=self.assets[indexPath.row];
-        ALAsset *asset =imgData.assett;
+            //PSImageData* imgData=self.assets[indexPath.row];
+            //ALAsset *asset =imgData.assett;
         
         // Delete the row from the data source
         [localTableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
