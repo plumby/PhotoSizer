@@ -9,6 +9,7 @@
 #import "PSImageSizeViewControllerV2.h"
 #import "PSImageSizeCell.h"
 #import "PSImageData.h"
+#import "PSAssetViewController.h"
 
 @interface PSImageSizeViewControllerV2 ()
 
@@ -30,15 +31,37 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
         //assets=[[NSMutableArray alloc]init];
         //[self loadAssets];
+    
+    /*
+    
+        activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleGray];
+    
+        [tableView addSubview:activityIndicator];
+        [activityIndicator setHidden:FALSE];
+        [activityIndicator setHidesWhenStopped:FALSE];
+        activityIndicator.center = tableView.center;
+    
+        [activityIndicator startAnimating];
+        [self.view setUserInteractionEnabled:NO];
+    
+    
     
     [
         album loadAssets:^(void)
         {
+            [self.view setUserInteractionEnabled:TRUE];
+            [activityIndicator setHidesWhenStopped:TRUE];
+            [activityIndicator stopAnimating];
+            
             [tableView reloadData];
         }
      ];
+     */
+    
+    [tableView reloadData];
     
     
 	// Do any additional setup after loading the view.
@@ -224,20 +247,36 @@
     
     if (selectedSegment == 0)
     {
-        includePhotos=YES;
-        includeVideo=NO;
+        album.includePhotos=YES;
+        album.includeVideo=NO;
     }
     else if (selectedSegment == 1)
     {
-        includePhotos=NO;
-        includeVideo=YES;
+        album.includePhotos=NO;
+        album.includeVideo=YES;
     }
-    else{
-        includePhotos=YES;
-        includeVideo=YES;
+    else
+    {
+        album.includePhotos=YES;
+        album.includeVideo=YES;
     }
-    
+    [tableView reloadData];
         //[self loadAssets];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+        //NSLog(@"Entering %s",__PRETTY_FUNCTION__);
+    
+    if ([[segue identifier] isEqualToString:@"showDetail"])
+    {
+        NSIndexPath *indexPath = [tableView indexPathForSelectedRow];
+        PSImageData* imgData=album.assets[indexPath.row];
+        ALAsset *asset =imgData.assett;
+        [[segue destinationViewController] setAsset:asset];
+    }
+        //NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
+    
 }
 
 

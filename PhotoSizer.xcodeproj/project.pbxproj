@@ -7,6 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2861C44D18A98A3E009F54E1 /* AppIcon29x29.png in Resources */ = {isa = PBXBuildFile; fileRef = 2861C43D18A98A3E009F54E1 /* AppIcon29x29.png */; };
+		2861C44E18A98A3E009F54E1 /* AppIcon29x29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2861C43E18A98A3E009F54E1 /* AppIcon29x29@2x.png */; };
+		2861C44F18A98A3E009F54E1 /* AppIcon40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 2861C43F18A98A3E009F54E1 /* AppIcon40x40.png */; };
+		2861C45018A98A3E009F54E1 /* AppIcon40x40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2861C44018A98A3E009F54E1 /* AppIcon40x40@2x.png */; };
+		2861C45118A98A3E009F54E1 /* AppIcon50x50.png in Resources */ = {isa = PBXBuildFile; fileRef = 2861C44118A98A3E009F54E1 /* AppIcon50x50.png */; };
+		2861C45218A98A3E009F54E1 /* AppIcon50x50@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2861C44218A98A3E009F54E1 /* AppIcon50x50@2x.png */; };
+		2861C45318A98A3E009F54E1 /* AppIcon57x57.png in Resources */ = {isa = PBXBuildFile; fileRef = 2861C44318A98A3E009F54E1 /* AppIcon57x57.png */; };
+		2861C45418A98A3E009F54E1 /* AppIcon57x57@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2861C44418A98A3E009F54E1 /* AppIcon57x57@2x.png */; };
+		2861C45518A98A3E009F54E1 /* AppIcon60x60.png in Resources */ = {isa = PBXBuildFile; fileRef = 2861C44518A98A3E009F54E1 /* AppIcon60x60.png */; };
+		2861C45618A98A3E009F54E1 /* AppIcon60x60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2861C44618A98A3E009F54E1 /* AppIcon60x60@2x.png */; };
+		2861C45718A98A3E009F54E1 /* AppIcon72x72.png in Resources */ = {isa = PBXBuildFile; fileRef = 2861C44718A98A3E009F54E1 /* AppIcon72x72.png */; };
+		2861C45818A98A3E009F54E1 /* AppIcon72x72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2861C44818A98A3E009F54E1 /* AppIcon72x72@2x.png */; };
+		2861C45918A98A3E009F54E1 /* AppIcon76x76.png in Resources */ = {isa = PBXBuildFile; fileRef = 2861C44918A98A3E009F54E1 /* AppIcon76x76.png */; };
+		2861C45A18A98A3E009F54E1 /* AppIcon76x76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2861C44A18A98A3E009F54E1 /* AppIcon76x76@2x.png */; };
+		2861C45B18A98A3E009F54E1 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 2861C44B18A98A3E009F54E1 /* iTunesArtwork.png */; };
+		2861C45C18A98A3E009F54E1 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2861C44C18A98A3E009F54E1 /* iTunesArtwork@2x.png */; };
+		2861C45E18AD729B009F54E1 /* Retina Load Screen - PhotoSizer.png in Resources */ = {isa = PBXBuildFile; fileRef = 2861C45D18AD729B009F54E1 /* Retina Load Screen - PhotoSizer.png */; };
+		2861C46018AD73C4009F54E1 /* Retina 4in Load Screen - PhotoSizer.png in Resources */ = {isa = PBXBuildFile; fileRef = 2861C45F18AD73C4009F54E1 /* Retina 4in Load Screen - PhotoSizer.png */; };
+		2861C46218AD7411009F54E1 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2861C46118AD7411009F54E1 /* Default-568h@2x.png */; };
 		287DE374185A572E00D58746 /* PSImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 287DE373185A572E00D58746 /* PSImageData.m */; };
 		28AF0FF9188C7C6A00314051 /* PSImageSizeViewControllerV2.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AF0FF8188C7C6A00314051 /* PSImageSizeViewControllerV2.m */; };
 		28AF0FFC188F241800314051 /* PSAlbumData.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AF0FFB188F241800314051 /* PSAlbumData.m */; };
@@ -18,7 +37,6 @@
 		28DC85EE184FCB6900128718 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC85ED184FCB6900128718 /* main.m */; };
 		28DC85F2184FCB6900128718 /* PSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC85F1184FCB6900128718 /* PSAppDelegate.m */; };
 		28DC85F5184FCB6900128718 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 28DC85F3184FCB6900128718 /* Main.storyboard */; };
-		28DC85FA184FCB6900128718 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28DC85F9184FCB6900128718 /* Images.xcassets */; };
 		28DC8601184FCB6900128718 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28DC8600184FCB6900128718 /* XCTest.framework */; };
 		28DC8602184FCB6900128718 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28DC85E1184FCB6900128718 /* Foundation.framework */; };
 		28DC8603184FCB6900128718 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28DC85E5184FCB6900128718 /* UIKit.framework */; };
@@ -42,13 +60,31 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2861C43D18A98A3E009F54E1 /* AppIcon29x29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon29x29.png; sourceTree = "<group>"; };
+		2861C43E18A98A3E009F54E1 /* AppIcon29x29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon29x29@2x.png"; sourceTree = "<group>"; };
+		2861C43F18A98A3E009F54E1 /* AppIcon40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon40x40.png; sourceTree = "<group>"; };
+		2861C44018A98A3E009F54E1 /* AppIcon40x40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon40x40@2x.png"; sourceTree = "<group>"; };
+		2861C44118A98A3E009F54E1 /* AppIcon50x50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon50x50.png; sourceTree = "<group>"; };
+		2861C44218A98A3E009F54E1 /* AppIcon50x50@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon50x50@2x.png"; sourceTree = "<group>"; };
+		2861C44318A98A3E009F54E1 /* AppIcon57x57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon57x57.png; sourceTree = "<group>"; };
+		2861C44418A98A3E009F54E1 /* AppIcon57x57@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon57x57@2x.png"; sourceTree = "<group>"; };
+		2861C44518A98A3E009F54E1 /* AppIcon60x60.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon60x60.png; sourceTree = "<group>"; };
+		2861C44618A98A3E009F54E1 /* AppIcon60x60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon60x60@2x.png"; sourceTree = "<group>"; };
+		2861C44718A98A3E009F54E1 /* AppIcon72x72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon72x72.png; sourceTree = "<group>"; };
+		2861C44818A98A3E009F54E1 /* AppIcon72x72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon72x72@2x.png"; sourceTree = "<group>"; };
+		2861C44918A98A3E009F54E1 /* AppIcon76x76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon76x76.png; sourceTree = "<group>"; };
+		2861C44A18A98A3E009F54E1 /* AppIcon76x76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon76x76@2x.png"; sourceTree = "<group>"; };
+		2861C44B18A98A3E009F54E1 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
+		2861C44C18A98A3E009F54E1 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
+		2861C45D18AD729B009F54E1 /* Retina Load Screen - PhotoSizer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Retina Load Screen - PhotoSizer.png"; sourceTree = "<group>"; };
+		2861C45F18AD73C4009F54E1 /* Retina 4in Load Screen - PhotoSizer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Retina 4in Load Screen - PhotoSizer.png"; sourceTree = "<group>"; };
+		2861C46118AD7411009F54E1 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		287DE372185A572E00D58746 /* PSImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSImageData.h; sourceTree = "<group>"; };
 		287DE373185A572E00D58746 /* PSImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSImageData.m; sourceTree = "<group>"; };
 		28AF0FF7188C7C6A00314051 /* PSImageSizeViewControllerV2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSImageSizeViewControllerV2.h; sourceTree = "<group>"; };
 		28AF0FF8188C7C6A00314051 /* PSImageSizeViewControllerV2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSImageSizeViewControllerV2.m; sourceTree = "<group>"; };
 		28AF0FFA188F241800314051 /* PSAlbumData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSAlbumData.h; sourceTree = "<group>"; };
 		28AF0FFB188F241800314051 /* PSAlbumData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSAlbumData.m; sourceTree = "<group>"; };
-		28AF0FFD1890692700314051 /* PSCompletionWatcher.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSCompletionWatcher.h; sourceTree = "<group>"; };
 		28CA37B018873869009C172B /* PSAlbumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSAlbumViewController.h; sourceTree = "<group>"; };
 		28CA37B118873869009C172B /* PSAlbumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSAlbumViewController.m; sourceTree = "<group>"; };
 		28DC85DE184FCB6900128718 /* PhotoSizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoSizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,7 +98,6 @@
 		28DC85F0184FCB6900128718 /* PSAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PSAppDelegate.h; sourceTree = "<group>"; };
 		28DC85F1184FCB6900128718 /* PSAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PSAppDelegate.m; sourceTree = "<group>"; };
 		28DC85F4184FCB6900128718 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		28DC85F9184FCB6900128718 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		28DC85FF184FCB6900128718 /* PhotoSizerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoSizerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		28DC8600184FCB6900128718 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		28DC8608184FCB6900128718 /* PhotoSizerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PhotoSizerTests-Info.plist"; sourceTree = "<group>"; };
@@ -104,9 +139,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2861C43C18A98A3E009F54E1 /* App Icon [Squared] */ = {
+			isa = PBXGroup;
+			children = (
+				2861C45F18AD73C4009F54E1 /* Retina 4in Load Screen - PhotoSizer.png */,
+				2861C45D18AD729B009F54E1 /* Retina Load Screen - PhotoSizer.png */,
+				2861C43D18A98A3E009F54E1 /* AppIcon29x29.png */,
+				2861C43E18A98A3E009F54E1 /* AppIcon29x29@2x.png */,
+				2861C43F18A98A3E009F54E1 /* AppIcon40x40.png */,
+				2861C44018A98A3E009F54E1 /* AppIcon40x40@2x.png */,
+				2861C44118A98A3E009F54E1 /* AppIcon50x50.png */,
+				2861C44218A98A3E009F54E1 /* AppIcon50x50@2x.png */,
+				2861C44318A98A3E009F54E1 /* AppIcon57x57.png */,
+				2861C44418A98A3E009F54E1 /* AppIcon57x57@2x.png */,
+				2861C44518A98A3E009F54E1 /* AppIcon60x60.png */,
+				2861C44618A98A3E009F54E1 /* AppIcon60x60@2x.png */,
+				2861C44718A98A3E009F54E1 /* AppIcon72x72.png */,
+				2861C44818A98A3E009F54E1 /* AppIcon72x72@2x.png */,
+				2861C44918A98A3E009F54E1 /* AppIcon76x76.png */,
+				2861C44A18A98A3E009F54E1 /* AppIcon76x76@2x.png */,
+				2861C44B18A98A3E009F54E1 /* iTunesArtwork.png */,
+				2861C44C18A98A3E009F54E1 /* iTunesArtwork@2x.png */,
+			);
+			name = "App Icon [Squared]";
+			path = "AppIcons/App Icon [Squared]";
+			sourceTree = "<group>";
+		};
 		28DC85D5184FCB6900128718 = {
 			isa = PBXGroup;
 			children = (
+				2861C46118AD7411009F54E1 /* Default-568h@2x.png */,
+				2861C43C18A98A3E009F54E1 /* App Icon [Squared] */,
 				28DC85E7184FCB6900128718 /* PhotoSizer */,
 				28DC8606184FCB6900128718 /* PhotoSizerTests */,
 				28DC85E0184FCB6900128718 /* Frameworks */,
@@ -151,7 +214,6 @@
 				28DC866C1851399D00128718 /* PSAssetViewController.m */,
 				28DC861B184FE3A800128718 /* PSImageSizeCell.h */,
 				28DC861C184FE3A800128718 /* PSImageSizeCell.m */,
-				28DC85F9184FCB6900128718 /* Images.xcassets */,
 				28DC85E8184FCB6900128718 /* Supporting Files */,
 				28CA37B018873869009C172B /* PSAlbumViewController.h */,
 				28CA37B118873869009C172B /* PSAlbumViewController.m */,
@@ -159,7 +221,6 @@
 				28AF0FF8188C7C6A00314051 /* PSImageSizeViewControllerV2.m */,
 				28AF0FFA188F241800314051 /* PSAlbumData.h */,
 				28AF0FFB188F241800314051 /* PSAlbumData.m */,
-				28AF0FFD1890692700314051 /* PSCompletionWatcher.h */,
 			);
 			path = PhotoSizer;
 			sourceTree = "<group>";
@@ -241,6 +302,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = Ian;
 				TargetAttributes = {
+					28DC85DD184FCB6900128718 = {
+						DevelopmentTeam = TWJNMJLS4H;
+					};
 					28DC85FE184FCB6900128718 = {
 						TestTargetID = 28DC85DD184FCB6900128718;
 					};
@@ -270,9 +334,27 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28DC85FA184FCB6900128718 /* Images.xcassets in Resources */,
+				2861C45818A98A3E009F54E1 /* AppIcon72x72@2x.png in Resources */,
+				2861C45B18A98A3E009F54E1 /* iTunesArtwork.png in Resources */,
+				2861C45018A98A3E009F54E1 /* AppIcon40x40@2x.png in Resources */,
+				2861C45318A98A3E009F54E1 /* AppIcon57x57.png in Resources */,
+				2861C44E18A98A3E009F54E1 /* AppIcon29x29@2x.png in Resources */,
+				2861C46218AD7411009F54E1 /* Default-568h@2x.png in Resources */,
 				28DC85EC184FCB6900128718 /* InfoPlist.strings in Resources */,
+				2861C45118A98A3E009F54E1 /* AppIcon50x50.png in Resources */,
+				2861C45218A98A3E009F54E1 /* AppIcon50x50@2x.png in Resources */,
+				2861C45418A98A3E009F54E1 /* AppIcon57x57@2x.png in Resources */,
+				2861C44F18A98A3E009F54E1 /* AppIcon40x40.png in Resources */,
+				2861C45918A98A3E009F54E1 /* AppIcon76x76.png in Resources */,
 				28DC85F5184FCB6900128718 /* Main.storyboard in Resources */,
+				2861C46018AD73C4009F54E1 /* Retina 4in Load Screen - PhotoSizer.png in Resources */,
+				2861C45E18AD729B009F54E1 /* Retina Load Screen - PhotoSizer.png in Resources */,
+				2861C44D18A98A3E009F54E1 /* AppIcon29x29.png in Resources */,
+				2861C45C18A98A3E009F54E1 /* iTunesArtwork@2x.png in Resources */,
+				2861C45A18A98A3E009F54E1 /* AppIcon76x76@2x.png in Resources */,
+				2861C45618A98A3E009F54E1 /* AppIcon60x60@2x.png in Resources */,
+				2861C45518A98A3E009F54E1 /* AppIcon60x60.png in Resources */,
+				2861C45718A98A3E009F54E1 /* AppIcon72x72.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,12 +507,13 @@
 		28DC8611184FCB6900128718 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PhotoSizer/PhotoSizer-Prefix.pch";
 				INFOPLIST_FILE = "PhotoSizer/PhotoSizer-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -438,12 +521,13 @@
 		28DC8612184FCB6900128718 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PhotoSizer/PhotoSizer-Prefix.pch";
 				INFOPLIST_FILE = "PhotoSizer/PhotoSizer-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

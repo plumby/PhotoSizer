@@ -10,9 +10,10 @@
 #import "PSImageData.h"
 
 @implementation PSAlbumData
-@synthesize assets;
-    //NSMutableArray* assets;
+@synthesize assets,videos,photos;
 @synthesize album;
+@synthesize includePhotos,includeVideo;
+
 
 -(id) initWithAlbum:(ALAssetsGroup*)newAlbum
 {
@@ -20,6 +21,8 @@
     
     if (self)
     {
+        includePhotos=YES;
+        includeVideo=YES;
         album=newAlbum;
             //[self loadAssets];
             //assets=NULL;
@@ -44,102 +47,159 @@
     return library;
 }
 
+-(void)setIncludePhotos:(BOOL)newIncludePhotos
+{
+    self->includePhotos=newIncludePhotos;
+    self->assets=NULL;
+        //    [self populateExternalArray];
+}
+
+-(void)setIncludeVideos:(BOOL)newIncludeVideos
+{
+    self->includeVideo=newIncludeVideos;
+        //    [self populateExternalArray];
+    self->assets=NULL;
+}
+
+-(NSArray*)assets
+{
+    if (!self->assets)
+    {
+        [self populateExternalArray];
+    }
+    
+    return self->assets;
+}
+
+
 
 
 -(void)loadAssets:(void(^)(void))handler
 {
-        //ALAssetsLibrary *assetsLibrary = [PSAlbumData defaultAssetsLibrary];
-    
-        //ALAssetsLibraryAccessFailureBlock failureBlock = ^(NSError *error)
-        //{
-        //};
-    
     _completionHandler = [handler copy];
     
-    if (assets) {
+    if (allAssets)
+    {
         _completionHandler();
         _completionHandler=nil;
         return;
     }
     
     NSMutableArray* tmpAssets=[[NSMutableArray alloc]init];
+    NSLog(@"Entering %s",__PRETTY_FUNCTION__);
     
-    [album  enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop)
-     {
-         if(result)
-         {
-             PSImageData* imgData=[[PSImageData alloc]init];
-             
-                 //if (
-                 //                     (includePhotos && [[result valueForProperty:@"ALAssetPropertyType"] isEqualToString:@"ALAssetTypePhoto"])
-                 //||
-                 //(includeVideo && [[result valueForProperty:@"ALAssetPropertyType"] isEqualToString:@"ALAssetTypeVideo"])
-                 //)
-                 //{
-             imgData.assett=result;
-             imgData.imgSize=result.defaultRepresentation.size;
-             [tmpAssets addObject:imgData];
-                 //}
-         }
-         else
-         {
-             assets=tmpAssets;
-             [self doSorting];
-             _completionHandler();
+    [
+
+        album  enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop)
+        {
+            if(result)
+            {
+                    PSImageData* imgData=[[PSImageData alloc]init];
+                    imgData.assett=result;
+                    imgData.imgSize=result.defaultRepresentation.size;
+                    [tmpAssets addObject:imgData];
+            }
+            else
+            {
+                    //allAssets=tmpAssets;
+                allAssets=[PSAlbumData doSorting:tmpAssets];
+                    //[self doSorting];
+                [self populateExternalArray];
+
+                _completionHandler();
              
                  // Clean up.
-             _completionHandler = nil;
-         }
-     }
+                _completionHandler = nil;
+            }
+        }
      ];
-    
-    
-     //NSUInteger groupTypes = ALAssetsGroupAlbum | ALAssetsGroupEvent | ALAssetsGroupFaces | ALAssetsGroupSavedPhotos;
-     //[assetsLibrary enumerateGroupsWithTypes:groupTypes usingBlock:listGroupBlock failureBlock:failureBlock];
+}
+
+
+-(void)populateExternalArray2
+{
+    for (PSImageData *imageData in allAssets)
+    {
+        ALAsset* asset=imageData.assett;
+        
+        if([[asset valueForProperty:@"ALAssetPropertyType"] isEqualToString:@"ALAssetTypePhoto"])
+        {
+            [photos addObject:asset];
+        }
+        else
+        {
+            [videos addObject:asset];
+        }
+    }
+}
+
+
+-(void)populateExternalArray
+{
+    if (includeVideo && includePhotos)
+    {
+        self->assets=allAssets;
+    }
+    else
+    {
+        NSMutableArray *tmpAssets=[[NSMutableArray alloc]init];
+
+        for (PSImageData *imageData in allAssets)
+        {
+            ALAsset* asset=imageData.assett;
+            
+            
+            if (
+                (includePhotos && [[asset valueForProperty:@"ALAssetPropertyType"] isEqualToString:@"ALAssetTypePhoto"])
+                ||
+                (includeVideo && [[asset valueForProperty:@"ALAssetPropertyType"] isEqualToString:@"ALAssetTypeVideo"])
+                )
+            {
+                [tmpAssets addObject:imageData];
+            }
+            
+            if([[asset valueForProperty:@"ALAssetPropertyType"] isEqualToString:@"ALAssetTypePhoto"])
+            {
+            }
+        }
+        
+        self->assets=tmpAssets;
+    }
 }
 
 
 -(void)sort
 {
-    [NSThread detachNewThreadSelector:@selector(doSorting) toTarget:self withObject:nil];
+        //[NSThread detachNewThreadSelector:@selector(doSorting) toTarget:self withObject:nil];
     //NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
 
 }
 
 
--(void)doSorting
++(NSArray*)doSorting:(NSArray*)unsortedArray
 {
+    NSArray* sortedArray;
+    
+    NSLog(@"Entering %s",__PRETTY_FUNCTION__);
+
         //NSLog(@"Entering %s",__PRETTY_FUNCTION__);
     
-    NSArray *tmpAssets=self.assets;
+        //NSArray *tmpAssets=allAssets;
     
     __block int i=0;
     
-    self->assets =
+    sortedArray =
     [
-     tmpAssets sortedArrayUsingComparator:^NSComparisonResult(id a, id b)
-     {
-         long long sizeA=[(PSImageData*)a imgSize];
-         long long sizeB=[(PSImageData*)b imgSize];
+        unsortedArray sortedArrayUsingComparator:^NSComparisonResult(id a, id b)
+        {
+            long long sizeA=[(PSImageData*)a imgSize];
+            long long sizeB=[(PSImageData*)b imgSize];
+            ++i;
          
-             //long long sizeA=[(ALAsset*)a defaultRepresentation].size;
-             //long long sizeB=[(ALAsset*)b defaultRepresentation].size;
-         
-         ++i;
-         
-         return (sizeA < sizeB);
-     }
+            return (sizeA < sizeB);
+        }
      ];
-    
-        //[tableView reloadData];
-    
-        //[sortButton setEnabled:TRUE];
-    
-        //[self.view setUserInteractionEnabled:TRUE];
-        //[activityIndicator setHidesWhenStopped:TRUE];
-        //[activityIndicator stopAnimating];
-        //NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
-    
+    return sortedArray;
 }
 
 

@@ -20,6 +20,9 @@
     IBOutlet UISegmentedControl* segmentControl;
     PSAlbumData* album;
         //NSArray* assets;
+    
+    UIActivityIndicatorView *activityIndicator;
+    
 }
 
 

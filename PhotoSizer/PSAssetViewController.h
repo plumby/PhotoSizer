@@ -12,11 +12,14 @@
 
 
 
-@interface PSAssetViewController : UIViewController
+@interface PSAssetViewController : UIViewController <UIScrollViewDelegate>
 {
     IBOutlet UIImageView* imageView;
     IBOutlet UIView* assetView;
+    IBOutlet UIScrollView* scrollView;
     MPMoviePlayerController* theMovie;
+    BOOL isShowingLandscapeView;
+
 }
 
 @property (strong, nonatomic) ALAsset* asset;

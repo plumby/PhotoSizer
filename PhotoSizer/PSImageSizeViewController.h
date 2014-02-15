@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PSAlbumData.h"
 
 @interface PSImageSizeViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 {
@@ -23,6 +24,9 @@
 - (IBAction)segmentSwitch:(id)sender;
 
 - (IBAction) sort;
+
+-(void)setAlbum:(PSAlbumData*) newAlbum;
+
 
 
 @end

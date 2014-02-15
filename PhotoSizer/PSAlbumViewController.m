@@ -25,7 +25,8 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
+    if (self)
+    {
         // Custom initialization
     }
     return self;
@@ -151,6 +152,21 @@
 }
 
 
+- (void) threadStartAnimating:(id)data {
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleGray];
+    
+    [tableView addSubview:activityIndicator];
+    [activityIndicator setHidden:FALSE];
+    [activityIndicator setHidesWhenStopped:FALSE];
+    activityIndicator.center = tableView.center;
+    
+    [activityIndicator startAnimating];
+    [self.view setUserInteractionEnabled:NO];
+
+    
+    [activityIndicator startAnimating];
+}
+
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -158,15 +174,30 @@
     
     if ([[segue identifier] isEqualToString:@"showPhotos"])
     {
-        NSIndexPath *indexPath = [tableView indexPathForSelectedRow];
+            //        NSIndexPath *indexPath = [tableView indexPathForSelectedRow];
         
+        [NSThread detachNewThreadSelector:@selector(threadStartAnimating:) toTarget:self withObject:nil];
+        
+        
+        NSIndexPath *indexPath = [tableView indexPathForSelectedRow];
         PSAlbumData* albumData=[assets objectAtIndex:indexPath.row];
+    
+        [
+            albumData loadAssets:^(void)
+            {
+                [self.view setUserInteractionEnabled:TRUE];
+                [activityIndicator setHidesWhenStopped:TRUE];
+                [activityIndicator stopAnimating];
+                
+                [[segue destinationViewController] setAlbum:albumData];
+            }
+         ];
+        
         
             //        ALAssetsGroup* album=albumData.album ;
-        [[segue destinationViewController] setAlbum:albumData];
-    }
-        //NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
     
+        //NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
+    }
 }
 
 

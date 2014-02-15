@@ -50,6 +50,8 @@
             
             imageView=[[UIImageView alloc]initWithFrame:assetView.bounds];
             
+            
+            
             ALAssetRepresentation *rep = [self.asset defaultRepresentation];
             CGFloat scale  = 1;
             UIImageOrientation orientation = UIImageOrientationUp;
@@ -57,11 +59,59 @@
             UIImage *image = [UIImage imageWithCGImage:[rep fullScreenImage] scale:scale orientation:orientation];
             
             imageView.image=[PSAssetViewController imageWithImage:image scaledToMaxWidth:imageView.bounds.size.width maxHeight:imageView.bounds.size.height];
+            scrollView.minimumZoomScale=0.5;
+            scrollView.maximumZoomScale=6.0;
+            scrollView.contentSize=assetView.bounds.size;//image.size;//CGSizeMake(1280, 960);
+            scrollView.delegate=self;
             
-            [assetView addSubview:imageView];
+                //            scrollView.ma
+            
+            [scrollView addSubview:imageView];
             [imageView sizeToFit ];
+            assetView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+            scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+            imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         }
     }
+}
+
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return imageView;
+}
+
+- (void)awakeFromNib
+{
+    isShowingLandscapeView = NO;
+        //[[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+        //[[NSNotificationCenter defaultCenter] addObserver:self
+        //                                   selector:@selector(orientationChanged:)
+        //                                         name:UIDeviceOrientationDidChangeNotification
+        //                                       object:nil];
+}
+
+- (void)orientationChanged:(NSNotification *)notification
+{
+        //assetView.bounds=CGRectMake(0, 0, assetView.bounds.size.height, assetView.bounds.size.width);
+    
+        //CGSizeMake(tempSize.height, tempSize.width);
+    
+    /*
+    UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
+    if (UIDeviceOrientationIsLandscape(deviceOrientation) &&
+        !isShowingLandscapeView)
+    {
+        [self performSegueWithIdentifier:@"DisplayAlternateView" sender:self];
+        isShowingLandscapeView = YES;
+    }
+    else if (UIDeviceOrientationIsPortrait(deviceOrientation) &&
+             isShowingLandscapeView)
+    {
+        [self dismissViewControllerAnimated:YES completion:nil];
+        isShowingLandscapeView = NO;
+    }
+     */
 }
 
 
@@ -233,6 +283,11 @@
     NSLog(@"Entering %s",__PRETTY_FUNCTION__);
 }
 
+
+- (CGRect)zoomRectForScrollView:(UIScrollView *)scrollView withScale:(float)scale withCenter:(CGPoint)center
+{
+    return CGRectMake(0.0f, 0.0f, 0.0f, 0.0f);
+}
 
     // When the movie is done,release the controller.
 -(void)myMovieFinishedCallback:(NSNotification*)aNotification

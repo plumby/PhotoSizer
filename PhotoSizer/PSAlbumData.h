@@ -14,17 +14,27 @@
 @interface PSAlbumData : NSObject
 {
     void (^_completionHandler)(void );
+    NSArray* allAssets;
+    
 }
 
 -(id) initWithAlbum:(ALAssetsGroup*)newAlbum;
 
 -(void)loadAssets:(void(^)(void))handler;
--(void)doSorting;
+    //-(void)doSorting;
++(NSArray*)doSorting:(NSArray*)unsortedArray;
 
 
 @property (readonly) ALAssetsGroup* album;
-
 @property (readonly) NSArray* assets;
+@property (readonly) NSMutableArray* videos;
+@property (readonly) NSMutableArray* photos;
+
+
+
+
+@property (nonatomic,readwrite) BOOL includeVideo;
+@property (nonatomic,readwrite) BOOL includePhotos;
 
 
 @end

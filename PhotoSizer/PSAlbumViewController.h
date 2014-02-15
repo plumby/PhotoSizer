@@ -12,7 +12,12 @@
 {
     IBOutlet UITableView *tableView;
     NSArray * assets;
+    UIActivityIndicatorView *activityIndicator;
+
 }
+
+    //-(void)loadData:(UIStoryboardSegue *)segue;
+
 
 
 @end

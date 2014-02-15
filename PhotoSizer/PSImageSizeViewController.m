@@ -116,6 +116,11 @@
 
 }
 
+-(void)setAlbum:(PSAlbumData*) newAlbum
+{
+}
+
+
 
 - (IBAction)segmentSwitch:(id)sender {
     UISegmentedControl *segmentedControl = (UISegmentedControl *) sender;
