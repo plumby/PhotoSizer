@@ -18,15 +18,11 @@
 
 + (ALAssetsLibrary *)defaultAssetsLibrary
 {
-        //NSLog(@"Entering %s",__PRETTY_FUNCTION__);
-    
     static dispatch_once_t pred = 0;
     static ALAssetsLibrary *library = nil;
     dispatch_once(&pred, ^{
         library = [[ALAssetsLibrary alloc] init];
     });
-    
-        //NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
     return library;
 }
 
@@ -51,19 +47,13 @@
             if (group)
             {
                 PSAlbumData* albumData=[[PSAlbumData alloc]initWithAlbum:group];
-                    //[albumData loadAssets];
-                
                 PSAssetLoader* assetLoader=[[PSAssetLoader alloc]initWithAlbum:albumData];
                 [loaderQueue addOperation:assetLoader];
                 [tmpAssets addObject:assetLoader];
-                
-                NSLog(@"Loaded album %@",[group valueForProperty:ALAssetsGroupPropertyName]);
-                
             }
             else
             {
                 _assetLoaders=tmpAssets;
-                NSLog(@"Loaded all albums");
                 dispatch_semaphore_signal(sema);
             }
         };
@@ -73,7 +63,6 @@
         [assetsLibrary enumerateGroupsWithTypes:groupTypes usingBlock:listGroupBlock failureBlock:failureBlock];
         
         dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-        NSLog(@"Exiting AlbumLoad");
     }
 }
 

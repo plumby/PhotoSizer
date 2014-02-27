@@ -10,11 +10,11 @@
 
 @interface PSImageSizeCell : UITableViewCell
 {
-    IBOutlet UIImageView *photoImageView;
-    IBOutlet UILabel* sizeLabel;
+    IBOutlet UIImageView *_photoImageView;
+    IBOutlet UILabel* _sizeLabel;
 }
 
-@property UIImageView *photoImageView;
-@property UILabel* sizeLabel;
+@property UIImageView *_photoImageView;
+@property UILabel* _sizeLabel;
 
 @end

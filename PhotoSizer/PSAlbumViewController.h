@@ -10,14 +10,10 @@
 
 @interface PSAlbumViewController : UIViewController  <UITableViewDataSource, UITableViewDelegate>
 {
-    IBOutlet UITableView *tableView;
-    NSArray * assets;
-    UIActivityIndicatorView *activityIndicator;
-    dispatch_semaphore_t sema;
+    IBOutlet UITableView *_tableView;
+    NSArray * _albums;
+    UIActivityIndicatorView *_activityIndicator;
 }
-
-    //-(void)loadData:(UIStoryboardSegue *)segue;
-
 
 
 @end

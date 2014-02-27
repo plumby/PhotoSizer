@@ -10,7 +10,7 @@
 
 #import "PSAlbumViewController.h"
 #import "PSImageData.h"
-#import "PSImageSizeViewControllerV2.h"
+#import "PSImageSizeViewController.h"
 #import "PSAlbumData.h"
 #import "PSAppDelegate.h"
 #import "PSAssetLoader.h"
@@ -36,15 +36,12 @@
 
 + (ALAssetsLibrary *)defaultAssetsLibrary
 {
-        //NSLog(@"Entering %s",__PRETTY_FUNCTION__);
-    
     static dispatch_once_t pred = 0;
     static ALAssetsLibrary *library = nil;
     dispatch_once(&pred, ^{
         library = [[ALAssetsLibrary alloc] init];
     });
     
-        //NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
     return library;
 }
 
@@ -55,52 +52,8 @@
         // Do any additional setup after loading the view.
     PSAppDelegate* app=[[UIApplication sharedApplication] delegate];
     
-    assets=[app albums];
-        //assets=[[NSMutableArray alloc]init];
-    
-        //[self loadAssets];
+    _albums=[app albums];
 }
-
-
-
-
--(void)loadAssets
-{
-    ALAssetsLibrary *assetsLibrary = [PSAlbumViewController defaultAssetsLibrary];
-    NSMutableArray* tmpAssets=[[NSMutableArray alloc]init];
-    
-    ALAssetsLibraryAccessFailureBlock failureBlock = ^(NSError *error)
-    {
-    };
-    
-        // emumerate through our groups and only add groups that contain photos
-    ALAssetsLibraryGroupsEnumerationResultsBlock listGroupBlock = ^(ALAssetsGroup *group, BOOL *stop)
-    {
-        if (group)
-        {
-            PSAlbumData* albumData=[[PSAlbumData alloc]initWithAlbum:group];
-            
-            [tmpAssets addObject:albumData];
-        }
-        else
-        {
-            assets=tmpAssets;
-                //[self sort];
-            [tableView reloadData];
-        }
-    };
-    
-        //
-    
-    
-    NSUInteger groupTypes = ALAssetsGroupAlbum | ALAssetsGroupEvent | ALAssetsGroupFaces | ALAssetsGroupSavedPhotos;
-    [assetsLibrary enumerateGroupsWithTypes:groupTypes usingBlock:listGroupBlock failureBlock:failureBlock];
-}
-
-
-
-
-
 
 
 
@@ -112,37 +65,22 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-        //NSLog(@"Entering %s",__PRETTY_FUNCTION__);
-    
-        // Return the number of sections.
-    
-        //NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-        //NSLog(@"Entering %s",__PRETTY_FUNCTION__);
-    
-        // Return the number of rows in the section.
-        //NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
-    
-    return [assets count];
+    return [_albums count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)thisTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-        //NSLog(@"Entering %s",__PRETTY_FUNCTION__);
-    
     static NSString *CellIdentifier = @"AlbumCell";
     
     
     UITableViewCell *cell = [thisTableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    
-        //cell.text=@"All";
-    
-    PSAssetLoader *loader=[assets objectAtIndex:indexPath.row];
+    PSAssetLoader *loader=[_albums objectAtIndex:indexPath.row];
     PSAlbumData* albumData=loader.album;
     
     ALAssetsGroup* album=albumData.album ;
@@ -151,182 +89,27 @@
     return cell;
 }
 
-
-- (void) threadStartAnimating:(id)data {
-    PSAlbumData *albumData=data;
-    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleGray];
-    activityIndicator.center = tableView.center;
-    
-    [tableView addSubview:activityIndicator];
-    [activityIndicator setHidden:FALSE];
-    [activityIndicator setHidesWhenStopped:FALSE];
-    
-    [activityIndicator startAnimating];
-    [self.view setUserInteractionEnabled:NO];
-    
-    
-    [activityIndicator startAnimating];
-    
-    if ([albumData isLoaded])
-    {
-        [self.view setUserInteractionEnabled:TRUE];
-        [activityIndicator setHidesWhenStopped:TRUE];
-        [activityIndicator stopAnimating];
-    }
-}
-
--(void)threadStopAnimating
-{
-    [self.view setUserInteractionEnabled:TRUE];
-    [activityIndicator setHidesWhenStopped:TRUE];
-    [activityIndicator stopAnimating];
-}
-
-
-
-- (void) animateActivity {
-    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleGray];
-    
-    [tableView addSubview:activityIndicator];
-    [activityIndicator setHidden:FALSE];
-    [activityIndicator setHidesWhenStopped:FALSE];
-    activityIndicator.center = tableView.center;
-    
-    [activityIndicator startAnimating];
-    [self.view setUserInteractionEnabled:NO];
-    
-    
-    [activityIndicator startAnimating];
-    
-    dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
-   
-    
-    [self.view setUserInteractionEnabled:TRUE];
-    [activityIndicator setHidesWhenStopped:TRUE];
-    [activityIndicator stopAnimating];
-}
-
-
-
-- (void)prepareForSegue3:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([[segue identifier] isEqualToString:@"showPhotos"])
-    {
-        NSIndexPath *indexPath = [tableView indexPathForSelectedRow];
-        PSAlbumData* albumData=[assets objectAtIndex:indexPath.row];
-        
-        if ([albumData isLoaded])
-        {
-            [[segue destinationViewController] setAlbum:albumData];
-        }
-        
-        NSOperationQueue* loadQueue1=[[NSOperationQueue alloc]init];
-        NSOperationQueue* loadQueue2=[[NSOperationQueue alloc]init];
-        
-        NSMutableArray* ops1=[[NSMutableArray alloc]init];
-        NSMutableArray* ops2=[[NSMutableArray alloc]init];
-        
-        NSInvocationOperation *startActivityOp = [[NSInvocationOperation alloc] initWithTarget:self
-                                                                                selector:@selector(threadStartAnimating:)
-                                                                                  object:albumData];
-        
-        NSInvocationOperation *loadAlbumAssetsOp = [[NSInvocationOperation alloc] initWithTarget:albumData
-                                                                                      selector:@selector(loadAssets)
-                                                                                        object:nil];
-        
-        
-        NSInvocationOperation *stopActivityOp = [[NSInvocationOperation alloc] initWithTarget:self
-                                                                                      selector:@selector(threadStopAnimating)
-                                                                                        object:nil];
-        
-
-        [ops1 addObject:startActivityOp];
-        
-        [loadQueue1 addOperations:ops1 waitUntilFinished:TRUE];
-        
-        [ops2 addObject:loadAlbumAssetsOp];
-        [ops2 addObject:stopActivityOp];
-        
-        
-        [loadQueue2 addOperations:ops2 waitUntilFinished:TRUE];
-        
-        [[segue destinationViewController] setAlbum:albumData];
-    }
-}
-
-
-- (void)prepareForSegue2:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([[segue identifier] isEqualToString:@"showPhotos"])
-    {
-        NSOperationQueue* loadQueue=[[NSOperationQueue alloc]init];
-        
-        [loadQueue addOperationWithBlock:^{
-             activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleGray];
-             
-             [tableView addSubview:activityIndicator];
-             [activityIndicator setHidden:FALSE];
-             [activityIndicator setHidesWhenStopped:FALSE];
-             activityIndicator.center = tableView.center;
-             
-             [activityIndicator startAnimating];
-             [self.view setUserInteractionEnabled:NO];
-             
-             
-             [activityIndicator startAnimating];
-         }];
-        
-        [loadQueue addOperationWithBlock:^{
-            NSIndexPath *indexPath = [tableView indexPathForSelectedRow];
-            PSAlbumData* albumData=[assets objectAtIndex:indexPath.row];
-            
-            if ([albumData isLoaded])
-            {
-                [[segue destinationViewController] setAlbum:albumData];
-            }
-            else
-            {
-                
-                [NSThread detachNewThreadSelector:@selector(threadStartAnimating:) toTarget:self withObject:albumData];
-                
-                
-                [
-                 albumData loadAssets:^(void)
-                 {
-                     [self.view setUserInteractionEnabled:TRUE];
-                     [activityIndicator setHidesWhenStopped:TRUE];
-                     [activityIndicator stopAnimating];
-                     
-                     [[segue destinationViewController] setAlbum:albumData];
-                 }
-                 ];
-            }
-        }];
-        
-    }
-}
-
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
-    NSIndexPath *indexPath = [tableView indexPathForSelectedRow];
+    NSIndexPath *indexPath = [_tableView indexPathForSelectedRow];
     
-    PSAssetLoader *loader=[assets objectAtIndex:indexPath.row];
+    PSAssetLoader *loader=[_albums objectAtIndex:indexPath.row];
     
     
     if(!loader.isFinished)
     {
-        activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleGray];
+        _activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleGray];
         
-        [tableView addSubview:activityIndicator];
-        [activityIndicator setHidden:FALSE];
-        [activityIndicator setHidesWhenStopped:FALSE];
-        activityIndicator.center = tableView.center;
+        [_tableView addSubview:_activityIndicator];
+        [_activityIndicator setHidden:FALSE];
+        [_activityIndicator setHidesWhenStopped:FALSE];
+        _activityIndicator.center = _tableView.center;
         
-        [activityIndicator startAnimating];
+        [_activityIndicator startAnimating];
         [self.view setUserInteractionEnabled:NO];
         
         
-        [activityIndicator startAnimating];
+        [_activityIndicator startAnimating];
 
         __block PSAlbumViewController* tempSelf=self;
     
@@ -342,22 +125,13 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    NSIndexPath *indexPath = [_tableView indexPathForSelectedRow];
     
-        //[NSThread detachNewThreadSelector:@selector(animateActivity) toTarget:self withObject:nil];
-    
-    sema = dispatch_semaphore_create(0);
-    
-    NSIndexPath *indexPath = [tableView indexPathForSelectedRow];
-    
-    PSAssetLoader *loader=[assets objectAtIndex:indexPath.row];
-    
-        //[loader waitUntilFinished];
-    
-        //PSAlbumData* albumData=loader.album;
+    PSAssetLoader *loader=[_albums objectAtIndex:indexPath.row];
     
     [self.view setUserInteractionEnabled:TRUE];
-    [activityIndicator setHidesWhenStopped:TRUE];
-    [activityIndicator stopAnimating];
+    [_activityIndicator setHidesWhenStopped:TRUE];
+    [_activityIndicator stopAnimating];
     
     
     [[segue destinationViewController] setLoader:loader];
@@ -370,72 +144,6 @@
 
 
 
-
-
-- (void)prepareForSegueX:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    sema = dispatch_semaphore_create(0);
-
-    NSIndexPath *indexPath = [tableView indexPathForSelectedRow];
-    PSAlbumData* albumData=[assets objectAtIndex:indexPath.row];
-    
-    if ([albumData isLoaded])
-    {
-        [[segue destinationViewController] setAlbum:albumData];
-    }
-    else
-    {
-        
-        [NSThread detachNewThreadSelector:@selector(animateActivity) toTarget:self withObject:nil];
-        
-        
-        [
-         albumData loadAssets:^(void)
-         {
-             dispatch_semaphore_signal(sema);
-             
-             [[segue destinationViewController] setAlbum:albumData];
-         }
-         ];
-    }
-}
-
-
-/*
--(void) loadAlbum
-{
- 
-        NSIndexPath *indexPath = [tableView indexPathForSelectedRow];
-        PSAlbumData* albumData=[assets objectAtIndex:indexPath.row];
-        
-        if ([albumData isLoaded])
-        {
-            [[segue destinationViewController] setAlbum:albumData];
-        }
-        else
-        {
-        
-            [NSThread detachNewThreadSelector:@selector(threadStartAnimating:) toTarget:self withObject:albumData];
-            
-            
-            [
-             albumData loadAssets:^(void)
-             {
-                 [self.view setUserInteractionEnabled:TRUE];
-                 [activityIndicator setHidesWhenStopped:TRUE];
-                 [activityIndicator stopAnimating];
-                 
-                 [[segue destinationViewController] setAlbum:albumData];
-             }
-             ];
-        }
-        
-        
-            //        ALAssetsGroup* album=albumData.album ;
-        
-            //NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
-    }
-}*/
 
 
 @end

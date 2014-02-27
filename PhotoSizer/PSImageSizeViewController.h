@@ -1,32 +1,36 @@
 //
-//  PSImageSizeViewController.h
+//  PSImageSizeViewControllerV2.h
 //  PhotoSizer
 //
-//  Created by Ian on 04/12/2013.
-//  Copyright (c) 2013 Ian. All rights reserved.
+//  Created by Ian on 19/01/2014.
+//  Copyright (c) 2014 Ian. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 #import "PSAlbumData.h"
+#import "iAd/ADBannerView.h"
 
-@interface PSImageSizeViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+#import "PSAssetLoader.h"
+
+@interface PSImageSizeViewController : UIViewController <ADBannerViewDelegate> 
 {
-    UIActivityIndicatorView *activityIndicator;
-    IBOutlet UIBarButtonItem* sortButton;
     IBOutlet UITableView *tableView;
     IBOutlet UISegmentedControl* segmentControl;
-    BOOL includeVideo;
-    BOOL includePhotos;
+    PSAlbumData* _album;
+    PSAssetLoader* _loader;
+    
+    UIActivityIndicatorView *activityIndicator;
+    IBOutlet ADBannerView* _adBannerView;
+    BOOL isBannerVisible;
+    UIActivityIndicatorView *_activityIndicator;
+    
 }
 
-@property(nonatomic, strong) NSArray *assets;
+@property (nonatomic, retain) id adBannerView;
+
+-(void)setLoader:(PSAssetLoader*)loader;
 
 - (IBAction)segmentSwitch:(id)sender;
-
-- (IBAction) sort;
-
--(void)setAlbum:(PSAlbumData*) newAlbum;
-
-
 
 @end

@@ -10,10 +10,7 @@
 #import <Foundation/Foundation.h>
 #import "PSAlbumData.h"
 
-@interface PSAssetLoader : NSOperation
-{
-        //    PSAlbumData* _album;
-}
+@interface PSAssetLoader : NSOperation;
 
 @property PSAlbumData* album;
 

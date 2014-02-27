@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 
-@interface PSImageData : UIViewController
+@interface PSImageData : NSObject
 
-@property ALAsset* assett;
+@property ALAsset* asset;
 @property long long imgSize;
 
 @end

@@ -174,51 +174,7 @@
                                                  name:MPMoviePlayerPlaybackDidFinishNotification
                                                object:theMovie];
     
-    /*
-    [[NSNotificationCenter defaultCenter]
-        addObserver:self
-        selector:@selector(MPMoviePlayerLoadStateDidChangeNotification:) name:MPMoviePlayerLoadStateDidChangeNotification
-        object:theMovie];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(MPMovieDurationAvailableNotification:)
-                                                 name:MPMovieDurationAvailableNotification
-                                               object:theMovie];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(MPMovieMediaTypesAvailableNotification:)
-                                                 name:MPMovieMediaTypesAvailableNotification
-                                               object:theMovie];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(MPMovieNaturalSizeAvailableNotification:)
-                                                 name:MPMovieNaturalSizeAvailableNotification
-                                               object:theMovie];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(MPMoviePlayerContentPreloadDidFinishNotification:)
-                                                 name:MPMoviePlayerContentPreloadDidFinishNotification
-                                               object:theMovie];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(MPMoviePlayerNowPlayingMovieDidChangeNotification:)
-                                                 name:MPMoviePlayerNowPlayingMovieDidChangeNotification
-                                               object:theMovie];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(MPMoviePlayerPlaybackStateDidChangeNotification:)
-                                                 name:MPMoviePlayerPlaybackStateDidChangeNotification
-                                               object:theMovie];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(MPMovieSourceTypeAvailableNotification:)
-                                                 name:MPMovieSourceTypeAvailableNotification
-                                               object:theMovie];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(MPMoviePlayerReadyForDisplayDidChangeNotification:)
-                                                 name:MPMoviePlayerReadyForDisplayDidChangeNotification
-                                               object:theMovie];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(MPMoviePlayerThumbnailImageRequestDidFinishNotification:)
-                                                 name:MPMoviePlayerThumbnailImageRequestDidFinishNotification
-                                               object:theMovie];
-    
-    */
-    
+
     [theMovie prepareToPlay];
     
         // Movie playback is asynchronous, so this method returns immediately.
@@ -235,55 +191,6 @@
 }
 
 
--(void)MPMovieDurationAvailableNotification:(NSNotification*)aNotification
-{
-     NSLog(@"Entering %s",__PRETTY_FUNCTION__);
-}
--(void)MPMovieMediaTypesAvailableNotification:(NSNotification*)aNotification
-{
-     NSLog(@"Entering %s",__PRETTY_FUNCTION__);
-}
--(void)MPMovieNaturalSizeAvailableNotification:(NSNotification*)aNotification
-{
-     NSLog(@"Entering %s",__PRETTY_FUNCTION__);
-}
--(void)MPMoviePlayerContentPreloadDidFinishNotification:(NSNotification*)aNotification
-{
-     NSLog(@"Entering %s",__PRETTY_FUNCTION__);
-}
--(void)MPMoviePlayerDidEnterFullscreenNotification:(NSNotification*)aNotification
-{
-     NSLog(@"Entering %s",__PRETTY_FUNCTION__);
-}
--(void)MPMoviePlayerDidExitFullscreenNotification:(NSNotification*)aNotification
-{
-     NSLog(@"Entering %s",__PRETTY_FUNCTION__);
-}
--(void)MPMoviePlayerLoadStateDidChangeNotification:(NSNotification*)aNotification
-{
-     NSLog(@"Entering %s",__PRETTY_FUNCTION__);
-}
--(void)MPMoviePlayerNowPlayingMovieDidChangeNotification:(NSNotification*)aNotification
-{
-     NSLog(@"Entering %s",__PRETTY_FUNCTION__);
-}
--(void)MPMoviePlayerPlaybackStateDidChangeNotification:(NSNotification*)aNotification
-{
-     NSLog(@"Entering %s",__PRETTY_FUNCTION__);
-}
--(void)MPMoviePlayerThumbnailImageRequestDidFinishNotification:(NSNotification*)aNotification
-{
-     NSLog(@"Entering %s",__PRETTY_FUNCTION__);
-}
--(void)MPMovieSourceTypeAvailableNotification:(NSNotification*)aNotification
-{
-     NSLog(@"Entering %s",__PRETTY_FUNCTION__);
-}
--(void)MPMoviePlayerReadyForDisplayDidChangeNotification:(NSNotification*)aNotification
-{
-    NSLog(@"Entering %s",__PRETTY_FUNCTION__);
-}
-
 
 - (CGRect)zoomRectForScrollView:(UIScrollView *)scrollView withScale:(float)scale withCenter:(CGPoint)center
 {
@@ -293,12 +200,6 @@
     // When the movie is done,release the controller.
 -(void)myMovieFinishedCallback:(NSNotification*)aNotification
 {
-        //MPMoviePlayerController* theMovie2=[aNotification object];
-    
-        //[[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:theMovie2];
-    
-        //theMovie2.view.frame = CGRectMake(0, 0, 0, 0);
-        // Release the movie instance created in playMovieAtURL
 }
 
 - (void)viewDidLoad
@@ -318,31 +219,10 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-        //NSLog(@"Entering %s",__PRETTY_FUNCTION__);
-    
     if ([[segue identifier] isEqualToString:@"ViewAssetDetail"])
     {
         [[segue destinationViewController] setAsset:_asset];
-        
-        
-        /*
-        NSIndexPath *indexPath = [tableView indexPathForSelectedRow];
-        PSImageData* imgData;
-        
-        if (indexPath.section==0 && album.includeVideo)
-        {
-            imgData=album.videos[indexPath.row];
-        }
-        else
-        {
-            imgData=album.photos[indexPath.row];
-        }
-        
-        ALAsset *asset =imgData.assett;
-        [[segue destinationViewController] setAsset:asset];
-         */
     }
-        //NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
 }
 
 

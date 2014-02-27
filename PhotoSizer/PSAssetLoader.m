@@ -40,19 +40,13 @@
              if(result)
              {
                  PSImageData* imgData=[[PSImageData alloc]init];
-                 imgData.assett=result;
+                 imgData.asset=result;
                  imgData.imgSize=result.defaultRepresentation.size;
-                     //imgData.imgSize=10;
                  [   tmpAssets addObject:imgData];
-                  NSLog(@"Loaded album asset %@",[_album.album valueForProperty:ALAssetsGroupPropertyName]);
-
              }
              else
              {
-                 _album.assets=[PSAlbumData doSorting:tmpAssets];
-                     //                 [self populateExternalArray];
-                 NSLog(@"Loaded all album assets %@",[_album.album valueForProperty:ALAssetsGroupPropertyName]);
-
+                 _album.assets=[PSAssetLoader doSorting:tmpAssets];
                  dispatch_semaphore_signal(sema);
                  
              }
@@ -61,6 +55,25 @@
         
          dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
     }
+}
+
++(NSArray*)doSorting:(NSArray*)unsortedArray
+{
+    NSArray* sortedArray;
+    __block int i=0;
+    
+    sortedArray =
+    [
+     unsortedArray sortedArrayUsingComparator:^NSComparisonResult(id a, id b)
+     {
+         long long sizeA=[(PSImageData*)a imgSize];
+         long long sizeB=[(PSImageData*)b imgSize];
+         ++i;
+         
+         return (sizeA < sizeB);
+     }
+     ];
+    return sortedArray;
 }
 
 

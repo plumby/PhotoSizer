@@ -13,31 +13,16 @@
 
 @interface PSAlbumData : NSObject
 {
-    void (^_completionHandler)(void );
-    NSArray* allAssets;
-    
+    NSArray* _allAssets;
 }
 
 -(id) initWithAlbum:(ALAssetsGroup*)newAlbum;
 
--(void)loadAssets:(void(^)(void))handler;
--(void)loadAssets;
-
-+(NSArray*)doSorting:(NSArray*)unsortedArray;
-
+-(void)setAssets:(NSArray*)assets;
 
 @property (readonly) ALAssetsGroup* album;
-@property (readwrite) NSArray* assets;
 @property (readonly) NSMutableArray* videos;
 @property (readonly) NSMutableArray* photos;
-
-@property (readwrite) BOOL isVideoSelected;
-@property (readwrite) BOOL isPhotoSelected;
-
--(BOOL)isLoaded;
-
-
-
 
 @property (nonatomic,readwrite) BOOL includeVideo;
 @property (nonatomic,readwrite) BOOL includePhotos;

@@ -50,17 +50,17 @@
                     </view>
                     <navigationItem key="navigationItem" id="8gl-EL-HA8"/>
                     <connections>
-                        <outlet property="tableView" destination="BxF-TF-DPU" id="z1C-7r-W7l"/>
+                        <outlet property="_tableView" destination="BxF-TF-DPU" id="lpk-Qj-LrB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aTq-B9-Oeu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-349" y="-123"/>
         </scene>
-        <!--Image Size View ControllerV2 - Images-->
+        <!--Image Size View Controller - Images-->
         <scene sceneID="8ce-yZ-lJw">
             <objects>
-                <viewController id="IWi-00-8X9" customClass="PSImageSizeViewControllerV2" sceneMemberID="viewController">
+                <viewController id="IWi-00-8X9" customClass="PSImageSizeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="N8U-II-MV3"/>
                         <viewControllerLayoutGuide type="bottom" id="gS5-NY-4Ax"/>
@@ -95,8 +95,8 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="photoImageView" destination="beI-Td-5bz" id="Ptd-PT-IcH"/>
-                                            <outlet property="sizeLabel" destination="eth-av-QVT" id="irm-ee-o32"/>
+                                            <outlet property="_photoImageView" destination="beI-Td-5bz" id="bbK-sr-MBq"/>
+                                            <outlet property="_sizeLabel" destination="eth-av-QVT" id="GgU-QJ-2Br"/>
                                             <segue destination="l1h-sQ-iQ2" kind="push" identifier="showDetail" id="rFM-ny-uHt"/>
                                         </connections>
                                     </tableViewCell>
