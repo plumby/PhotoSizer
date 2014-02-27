@@ -6,15 +6,119 @@
 //  Copyright (c) 2013 Ian. All rights reserved.
 //
 
+#import <AssetsLibrary/AssetsLibrary.h>
 #import "PSAppDelegate.h"
+#import "PSAlbumData.h"
 
 @implementation PSAppDelegate
+@synthesize albums;
+@synthesize albumLoader;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+    [self loadAllData];
+        //[self loadAllData2];
     return YES;
 }
+
+-(void) loadAllData
+{
+        //sema = dispatch_semaphore_create(0);
+    
+    NSOperationQueue* loadQueue=[[NSOperationQueue alloc]init];
+    
+    NSMutableArray* ops=[[NSMutableArray alloc]init];
+    
+    albumLoader=[[PSAlbumLoader alloc]init];
+    
+    [ops addObject:albumLoader];
+    
+    [loadQueue addOperations:ops waitUntilFinished:TRUE];
+    
+    albums=albumLoader.assetLoaders;
+    
+     NSLog(@"Exiting loadAllData");
+        //    while(!albums)
+        //{
+        //}
+        //dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+}
+
+
+
+
+-(void) loadAllData2
+{
+    sema = dispatch_semaphore_create(0);
+    
+    NSOperationQueue* loadQueue=[[NSOperationQueue alloc]init];
+    
+    NSMutableArray* ops=[[NSMutableArray alloc]init];
+    
+    NSInvocationOperation *loadAlbumAssetsOp = [[NSInvocationOperation alloc] initWithTarget:self
+                                                                                    selector:@selector(loadAssets)
+                                                                                      object:nil];
+    
+    
+    [ops addObject:loadAlbumAssetsOp];
+    
+    [loadQueue addOperations:ops waitUntilFinished:TRUE];
+    
+        //    while(!albums)
+        //{
+        //}
+     dispatch_semaphore_wait(sema, DISPATCH_TIME_FOREVER);
+}
+
+
++ (ALAssetsLibrary *)defaultAssetsLibrary
+{
+        //NSLog(@"Entering %s",__PRETTY_FUNCTION__);
+    
+    static dispatch_once_t pred = 0;
+    static ALAssetsLibrary *library = nil;
+    dispatch_once(&pred, ^{
+        library = [[ALAssetsLibrary alloc] init];
+    });
+    
+        //NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
+    return library;
+}
+
+
+-(void)loadAssets
+{
+    ALAssetsLibrary *assetsLibrary = [PSAppDelegate defaultAssetsLibrary];
+    __block NSMutableArray* tmpAssets=[[NSMutableArray alloc]init];
+    
+    ALAssetsLibraryAccessFailureBlock failureBlock = ^(NSError *error)
+    {
+    };
+    
+        // emumerate through our groups and only add groups that contain photos
+    ALAssetsLibraryGroupsEnumerationResultsBlock listGroupBlock = ^(ALAssetsGroup *group, BOOL *stop)
+    {
+        if (group)
+        {
+            PSAlbumData* albumData=[[PSAlbumData alloc]initWithAlbum:group];
+                //[albumData loadAssets];
+            
+            [tmpAssets addObject:albumData];
+        }
+        else
+        {
+            albums=tmpAssets;
+            dispatch_semaphore_signal(sema);
+        }
+    };
+    
+    
+    NSUInteger groupTypes = ALAssetsGroupAlbum | ALAssetsGroupEvent | ALAssetsGroupFaces | ALAssetsGroupSavedPhotos;
+    [assetsLibrary enumerateGroupsWithTypes:groupTypes usingBlock:listGroupBlock failureBlock:failureBlock];
+}
+
+
+
 							
 - (void)applicationWillResignActive:(UIApplication *)application
 {

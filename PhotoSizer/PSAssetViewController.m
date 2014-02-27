@@ -7,6 +7,7 @@
 //
 
 #import "PSAssetViewController.h"
+#import "PSAssetDetailViewController.h"
 
 @interface PSAssetViewController ()
 
@@ -312,5 +313,37 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+        //NSLog(@"Entering %s",__PRETTY_FUNCTION__);
+    
+    if ([[segue identifier] isEqualToString:@"ViewAssetDetail"])
+    {
+        [[segue destinationViewController] setAsset:_asset];
+        
+        
+        /*
+        NSIndexPath *indexPath = [tableView indexPathForSelectedRow];
+        PSImageData* imgData;
+        
+        if (indexPath.section==0 && album.includeVideo)
+        {
+            imgData=album.videos[indexPath.row];
+        }
+        else
+        {
+            imgData=album.photos[indexPath.row];
+        }
+        
+        ALAsset *asset =imgData.assett;
+        [[segue destinationViewController] setAsset:asset];
+         */
+    }
+        //NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
+}
+
 
 @end

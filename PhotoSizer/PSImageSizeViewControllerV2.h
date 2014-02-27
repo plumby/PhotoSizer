@@ -9,26 +9,35 @@
 #import <UIKit/UIKit.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "PSAlbumData.h"
+#import "iAd/ADBannerView.h"
 
+#import "PSAssetLoader.h"
 
-@interface PSImageSizeViewControllerV2 : UIViewController
+@interface PSImageSizeViewControllerV2 : UIViewController <ADBannerViewDelegate> 
 {
-    BOOL includeVideo;
-    BOOL includePhotos;
+        //BOOL includeVideo;
+        //BOOL includePhotos;
     
     IBOutlet UITableView *tableView;
     IBOutlet UISegmentedControl* segmentControl;
-    PSAlbumData* album;
+    PSAlbumData* _album;
+    PSAssetLoader* _loader;
         //NSArray* assets;
     
     UIActivityIndicatorView *activityIndicator;
+    IBOutlet ADBannerView* _adBannerView;
+    BOOL isBannerVisible;
+    UIActivityIndicatorView *_activityIndicator;
     
 }
 
+@property (nonatomic, retain) id adBannerView;
 
 
 
--(void)setAlbum:(PSAlbumData*) newAlbum;
+
+    //-(void)setAlbum:(PSAlbumData*) newAlbum;
+-(void)setLoader:(PSAssetLoader*)loader;
 
 
     //@property(nonatomic, strong) NSArray *assets;

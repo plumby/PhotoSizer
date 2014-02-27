@@ -26,6 +26,8 @@
 		2861C45E18AD729B009F54E1 /* Retina Load Screen - PhotoSizer.png in Resources */ = {isa = PBXBuildFile; fileRef = 2861C45D18AD729B009F54E1 /* Retina Load Screen - PhotoSizer.png */; };
 		2861C46018AD73C4009F54E1 /* Retina 4in Load Screen - PhotoSizer.png in Resources */ = {isa = PBXBuildFile; fileRef = 2861C45F18AD73C4009F54E1 /* Retina 4in Load Screen - PhotoSizer.png */; };
 		2861C46218AD7411009F54E1 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2861C46118AD7411009F54E1 /* Default-568h@2x.png */; };
+		2861C46418B16457009F54E1 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2861C46318B16457009F54E1 /* iAd.framework */; };
+		2861C46718B41779009F54E1 /* PSAssetDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2861C46618B41779009F54E1 /* PSAssetDetailViewController.m */; };
 		287DE374185A572E00D58746 /* PSImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 287DE373185A572E00D58746 /* PSImageData.m */; };
 		28AF0FF9188C7C6A00314051 /* PSImageSizeViewControllerV2.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AF0FF8188C7C6A00314051 /* PSImageSizeViewControllerV2.m */; };
 		28AF0FFC188F241800314051 /* PSAlbumData.m in Sources */ = {isa = PBXBuildFile; fileRef = 28AF0FFB188F241800314051 /* PSAlbumData.m */; };
@@ -47,6 +49,8 @@
 		28DC861D184FE3A800128718 /* PSImageSizeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC861C184FE3A800128718 /* PSImageSizeCell.m */; };
 		28DC8620185132EC00128718 /* PSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC861F185132EC00128718 /* PSViewController.m */; };
 		28DC866D1851399D00128718 /* PSAssetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28DC866C1851399D00128718 /* PSAssetViewController.m */; };
+		28FA986418BE873600C2DC16 /* PSAlbumLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FA986318BE873600C2DC16 /* PSAlbumLoader.m */; };
+		28FA986718BE8EE500C2DC16 /* PSAssetLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = 28FA986618BE8EE500C2DC16 /* PSAssetLoader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +83,9 @@
 		2861C45D18AD729B009F54E1 /* Retina Load Screen - PhotoSizer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Retina Load Screen - PhotoSizer.png"; sourceTree = "<group>"; };
 		2861C45F18AD73C4009F54E1 /* Retina 4in Load Screen - PhotoSizer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Retina 4in Load Screen - PhotoSizer.png"; sourceTree = "<group>"; };
 		2861C46118AD7411009F54E1 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		2861C46318B16457009F54E1 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
+		2861C46518B41779009F54E1 /* PSAssetDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSAssetDetailViewController.h; sourceTree = "<group>"; };
+		2861C46618B41779009F54E1 /* PSAssetDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSAssetDetailViewController.m; sourceTree = "<group>"; };
 		287DE372185A572E00D58746 /* PSImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSImageData.h; sourceTree = "<group>"; };
 		287DE373185A572E00D58746 /* PSImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSImageData.m; sourceTree = "<group>"; };
 		28AF0FF7188C7C6A00314051 /* PSImageSizeViewControllerV2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSImageSizeViewControllerV2.h; sourceTree = "<group>"; };
@@ -112,6 +119,10 @@
 		28DC861F185132EC00128718 /* PSViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PSViewController.m; path = ../PSViewController.m; sourceTree = "<group>"; };
 		28DC866B1851399D00128718 /* PSAssetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSAssetViewController.h; sourceTree = "<group>"; };
 		28DC866C1851399D00128718 /* PSAssetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSAssetViewController.m; sourceTree = "<group>"; };
+		28FA986218BE873600C2DC16 /* PSAlbumLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSAlbumLoader.h; sourceTree = "<group>"; };
+		28FA986318BE873600C2DC16 /* PSAlbumLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSAlbumLoader.m; sourceTree = "<group>"; };
+		28FA986518BE8EE500C2DC16 /* PSAssetLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSAssetLoader.h; sourceTree = "<group>"; };
+		28FA986618BE8EE500C2DC16 /* PSAssetLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSAssetLoader.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +130,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2861C46418B16457009F54E1 /* iAd.framework in Frameworks */,
 				28DC861A184FD01400128718 /* AssetsLibrary.framework in Frameworks */,
 				28DC85E4184FCB6900128718 /* CoreGraphics.framework in Frameworks */,
 				28DC85E6184FCB6900128718 /* UIKit.framework in Frameworks */,
@@ -189,6 +201,7 @@
 		28DC85E0184FCB6900128718 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2861C46318B16457009F54E1 /* iAd.framework */,
 				28DC8619184FD01400128718 /* AssetsLibrary.framework */,
 				28DC85E1184FCB6900128718 /* Foundation.framework */,
 				28DC85E3184FCB6900128718 /* CoreGraphics.framework */,
@@ -221,6 +234,12 @@
 				28AF0FF8188C7C6A00314051 /* PSImageSizeViewControllerV2.m */,
 				28AF0FFA188F241800314051 /* PSAlbumData.h */,
 				28AF0FFB188F241800314051 /* PSAlbumData.m */,
+				2861C46518B41779009F54E1 /* PSAssetDetailViewController.h */,
+				2861C46618B41779009F54E1 /* PSAssetDetailViewController.m */,
+				28FA986218BE873600C2DC16 /* PSAlbumLoader.h */,
+				28FA986318BE873600C2DC16 /* PSAlbumLoader.m */,
+				28FA986518BE8EE500C2DC16 /* PSAssetLoader.h */,
+				28FA986618BE8EE500C2DC16 /* PSAssetLoader.m */,
 			);
 			path = PhotoSizer;
 			sourceTree = "<group>";
@@ -379,7 +398,10 @@
 				28DC861D184FE3A800128718 /* PSImageSizeCell.m in Sources */,
 				28DC85F2184FCB6900128718 /* PSAppDelegate.m in Sources */,
 				28DC8618184FCD3500128718 /* PSImageSizeViewController.m in Sources */,
+				28FA986718BE8EE500C2DC16 /* PSAssetLoader.m in Sources */,
+				2861C46718B41779009F54E1 /* PSAssetDetailViewController.m in Sources */,
 				28CA37B218873869009C172B /* PSAlbumViewController.m in Sources */,
+				28FA986418BE873600C2DC16 /* PSAlbumLoader.m in Sources */,
 				28AF0FF9188C7C6A00314051 /* PSImageSizeViewControllerV2.m in Sources */,
 				28DC8620185132EC00128718 /* PSViewController.m in Sources */,
 				28DC866D1851399D00128718 /* PSAssetViewController.m in Sources */,
@@ -512,6 +534,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PhotoSizer/PhotoSizer-Prefix.pch";
 				INFOPLIST_FILE = "PhotoSizer/PhotoSizer-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -526,6 +549,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PhotoSizer/PhotoSizer-Prefix.pch";
 				INFOPLIST_FILE = "PhotoSizer/PhotoSizer-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;

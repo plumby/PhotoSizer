@@ -13,6 +13,7 @@
 @synthesize assets,videos,photos;
 @synthesize album;
 @synthesize includePhotos,includeVideo;
+@synthesize isVideoSelected,isPhotoSelected;
 
 
 -(id) initWithAlbum:(ALAssetsGroup*)newAlbum
@@ -27,6 +28,8 @@
             //[self loadAssets];
             //assets=NULL;
             //        assets=[[NSMutableArray alloc]init];
+        isVideoSelected=TRUE;
+        isPhotoSelected=TRUE;
     }
     
     return self;
@@ -61,6 +64,7 @@
     self->assets=NULL;
 }
 
+
 -(NSArray*)assets
 {
     if (!self->assets)
@@ -70,6 +74,19 @@
     
     return self->assets;
 }
+
+-(void)setAssets:(NSArray *)newAssets
+{
+    self->allAssets=newAssets;
+    [self populateExternalArray];
+}
+
+
+-(BOOL)isLoaded
+{
+    return (allAssets != NULL);
+}
+
 
 
 
@@ -86,7 +103,7 @@
     }
     
     NSMutableArray* tmpAssets=[[NSMutableArray alloc]init];
-    NSLog(@"Entering %s",__PRETTY_FUNCTION__);
+        //NSLog(@"Entering %s",__PRETTY_FUNCTION__);
     
     [
 
@@ -116,19 +133,62 @@
 }
 
 
+-(void)loadAssets
+{
+    if (allAssets)
+    {
+        return;
+    }
+    
+    NSString * timeStampValue = [NSString stringWithFormat:@"%ld", (long)[[NSDate date] timeIntervalSince1970]];
+    NSLog(@"TimeStamp Value == %@", timeStampValue);
+    
+    NSMutableArray* tmpAssets=[[NSMutableArray alloc]init];
+    
+    [
+     
+     album  enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop)
+     {
+         if(result)
+         {
+             PSImageData* imgData=[[PSImageData alloc]init];
+             imgData.assett=result;
+             imgData.imgSize=result.defaultRepresentation.size;
+                 //imgData.imgSize=10;
+            [   tmpAssets addObject:imgData];
+         }
+         else
+         {
+             allAssets=[PSAlbumData doSorting:tmpAssets];
+             [self populateExternalArray];
+             
+             NSString *timeStampValue2 = [NSString stringWithFormat:@"%ld", (long)[[NSDate date] timeIntervalSince1970]];
+             NSLog(@"TimeStamp Value == %@", timeStampValue2);
+             
+         }
+     }
+     ];
+}
+
+
+
+
 -(void)populateExternalArray2
 {
+    photos=[[NSMutableArray alloc]init];
+    videos=[[NSMutableArray alloc]init];
+    
     for (PSImageData *imageData in allAssets)
     {
         ALAsset* asset=imageData.assett;
         
         if([[asset valueForProperty:@"ALAssetPropertyType"] isEqualToString:@"ALAssetTypePhoto"])
         {
-            [photos addObject:asset];
+            [photos addObject:imageData];
         }
-        else
+        else if ([[asset valueForProperty:@"ALAssetPropertyType"] isEqualToString:@"ALAssetTypeVideo"])
         {
-            [videos addObject:asset];
+            [videos addObject:imageData];
         }
     }
 }
@@ -136,6 +196,8 @@
 
 -(void)populateExternalArray
 {
+    [self populateExternalArray2];
+    
     if (includeVideo && includePhotos)
     {
         self->assets=allAssets;
@@ -180,7 +242,7 @@
 {
     NSArray* sortedArray;
     
-    NSLog(@"Entering %s",__PRETTY_FUNCTION__);
+        //NSLog(@"Entering %s",__PRETTY_FUNCTION__);
 
         //NSLog(@"Entering %s",__PRETTY_FUNCTION__);
     

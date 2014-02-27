@@ -21,14 +21,20 @@
 -(id) initWithAlbum:(ALAssetsGroup*)newAlbum;
 
 -(void)loadAssets:(void(^)(void))handler;
-    //-(void)doSorting;
+-(void)loadAssets;
+
 +(NSArray*)doSorting:(NSArray*)unsortedArray;
 
 
 @property (readonly) ALAssetsGroup* album;
-@property (readonly) NSArray* assets;
+@property (readwrite) NSArray* assets;
 @property (readonly) NSMutableArray* videos;
 @property (readonly) NSMutableArray* photos;
+
+@property (readwrite) BOOL isVideoSelected;
+@property (readwrite) BOOL isPhotoSelected;
+
+-(BOOL)isLoaded;
 
 
 

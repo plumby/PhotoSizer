@@ -17,6 +17,7 @@
 
 @implementation PSImageSizeViewControllerV2
 
+@synthesize adBannerView= _adBannerView;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -32,39 +33,62 @@
 {
     [super viewDidLoad];
     
-        //assets=[[NSMutableArray alloc]init];
-        //[self loadAssets];
-    
-    /*
-    
+    if(_loader.isExecuting)
+    {
         activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleGray];
-    
+        activityIndicator.center = tableView.center;
+        
         [tableView addSubview:activityIndicator];
         [activityIndicator setHidden:FALSE];
         [activityIndicator setHidesWhenStopped:FALSE];
-        activityIndicator.center = tableView.center;
-    
+        
         [activityIndicator startAnimating];
         [self.view setUserInteractionEnabled:NO];
-    
-    
-    
-    [
-        album loadAssets:^(void)
+        
+        
+        __block PSImageSizeViewControllerV2* tempSelf=self;
+        
+        [_loader setCompletionBlock:^(void)
         {
-            [self.view setUserInteractionEnabled:TRUE];
-            [activityIndicator setHidesWhenStopped:TRUE];
-            [activityIndicator stopAnimating];
-            
-            [tableView reloadData];
-        }
-     ];
-     */
+            [tempSelf performSelectorOnMainThread:@selector(refreshTableView) withObject:nil waitUntilDone:YES];
+        }];
+    }
     
-    [tableView reloadData];
     
+            //[_loader waitUntilFinished];
+    
+   [tableView reloadData];
+    segmentControl.selectedSegmentIndex=2;
+    
+    
+    
+        //    CGRect screenSize=[_adBannerView.]
+        //    _adBannerView setPosition:
     
 	// Do any additional setup after loading the view.
+}
+
+- (void) refreshTableView
+{
+    [tableView reloadData];
+    [self.view setUserInteractionEnabled:TRUE];
+    [activityIndicator setHidesWhenStopped:TRUE];
+    
+    [activityIndicator stopAnimating];
+
+}
+
+
+
+-(void)viewDidNotLayoutSubviews
+{
+    CGRect zero=CGRectMake(160, 503, _adBannerView.frame.size.width, _adBannerView.frame.size.height);
+    
+        //_adBannerView.frame;//CGRectMake(0, 0, _adBannerView.frame.size.width, _adBannerView.frame.size.height);
+    
+    _adBannerView.frame = CGRectOffset(zero, 0, 50);
+    isBannerVisible=NO;
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -73,109 +97,17 @@
     // Dispose of any resources that can be recreated.
 }
 
--(void)setAlbum:(PSAlbumData*) newAlbum
+    //-(void)setAlbum:(PSAlbumData*) newAlbum
+    //{
+    //_album=newAlbum;
+    //}
+
+
+-(void)setLoader:(PSAssetLoader *)loader
 {
-    album=newAlbum;
+    _loader=loader;
+    _album=loader.album;
 }
-
-
-
-/*
--(void)loadAssets
-{
-        //NSLog(@"Entering %s",__PRETTY_FUNCTION__);
-    
-        //   _assets = [@[] mutableCopy];
-        __block NSMutableArray *tmpAssets = [@[] mutableCopy];
-        // 1
-    
-          [album  enumerateAssetsUsingBlock:^(ALAsset *result, NSUInteger index, BOOL *stop)
-          {
-              if(result)
-              {
-                  PSImageData* imgData=[[PSImageData alloc]init];
-                  
-                      //if (
-                      //                     (includePhotos && [[result valueForProperty:@"ALAssetPropertyType"] isEqualToString:@"ALAssetTypePhoto"])
-                      //||
-                      //(includeVideo && [[result valueForProperty:@"ALAssetPropertyType"] isEqualToString:@"ALAssetTypeVideo"])
-                      //)
-                      //{
-                      imgData.assett=result;
-                      imgData.imgSize=result.defaultRepresentation.size;
-                      [tmpAssets addObject:imgData];
-                      //}
-              }
-              else
-              {
-                  assets=tmpAssets;
-              }
-          }
-     ];
-    
-        //NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
-    
-}
-
-
-
--(IBAction)sort
-{
-        //NSLog(@"Entering %s",__PRETTY_FUNCTION__);
-    
-        //    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle: UIActivityIndicatorViewStyleGray];
-    
-        //    [tableView addSubview:activityIndicator];
-        //[activityIndicator setHidden:FALSE];
-        //[activityIndicator setHidesWhenStopped:FALSE];
-        //activityIndicator.center = tableView.center;
-    
-        //[activityIndicator startAnimating];
-        //[self.view setUserInteractionEnabled:NO];
-        //[sortButton setEnabled:NO];
-    
-    [NSThread detachNewThreadSelector:@selector(doSorting) toTarget:self withObject:nil];
-        //NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
-    
-}
-
-
--(void)doSorting
-{
-        //NSLog(@"Entering %s",__PRETTY_FUNCTION__);
-    
-    NSArray *tmpAssets=self->assets;
-    
-    __block int i=0;
-    
-    self->assets =
-    [
-     tmpAssets sortedArrayUsingComparator:^NSComparisonResult(id a, id b)
-     {
-         long long sizeA=[(PSImageData*)a imgSize];
-         long long sizeB=[(PSImageData*)b imgSize];
-         
-             //long long sizeA=[(ALAsset*)a defaultRepresentation].size;
-             //long long sizeB=[(ALAsset*)b defaultRepresentation].size;
-         
-         ++i;
-         
-         return (sizeA < sizeB);
-     }
-     ];
-    
-    [tableView reloadData];
-    
-        //[sortButton setEnabled:TRUE];
-    
-    [self.view setUserInteractionEnabled:TRUE];
-        //[activityIndicator setHidesWhenStopped:TRUE];
-        //[activityIndicator stopAnimating];
-        //NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
-    
-}
- */
-
 
 
 #pragma mark - Table view data source
@@ -187,7 +119,26 @@
         // Return the number of sections.
     
         //NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
+    
+    if(_album.includePhotos && _album.includeVideo)
+    {
+        return 2;
+    }
     return 1;
+}
+
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    if(section == 0 && _album.includeVideo)
+    {
+        return @"Videos";
+    }
+    else
+    {
+        return @"Photos";
+    }
+        //return @"XX";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -199,17 +150,35 @@
     
         //return [assets count];
         //    return [self.album.assets count]
-    
-    return [album.assets count];
+    if (section==0 && _album.includeVideo)
+    {
+        return [_album.videos count];
+    }
+    else
+    {
+            return [_album.photos count];
+    }
 }
+
+
+
 
 - (UITableViewCell *)tableView:(UITableView *)thisTableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-        //NSLog(@"Entering %s",__PRETTY_FUNCTION__);
-    
     static NSString *CellIdentifier = @"Cell";
     PSImageSizeCell *cell = [thisTableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    PSImageData* imgData=album.assets[indexPath.row];
+        //    PSImageData* imgData=album.assets[indexPath.row];
+    PSImageData* imgData;
+    
+    if (indexPath.section==0 && _album.includeVideo)
+    {
+        imgData=_album.videos[indexPath.row];
+    }
+    else
+    {
+        imgData=_album.photos[indexPath.row];
+    }
+    
     ALAsset *asset =imgData.assett;
         //UIImage *image=[UIImage imageWithCGImage:[asset thumbnail]];
         //    NSURL* s=[asset valueForProperty:ALAssetPropertyAssetURL];
@@ -226,9 +195,6 @@
         // Output for locale en_US: "formattedNumberString: formattedNumberString: 122,344.453"
     
     cell.sizeLabel.text=[NSString stringWithFormat:@"%@ KB",[numberFormatter stringForObjectValue:size]];
-    
-    
-    
     
         //    cell.sizeLabel.text=[NSString stringWithFormat:@"%lli",assetRepresentation.size];
     cell.photoImageView.image=[UIImage imageWithCGImage:[asset thumbnail]];
@@ -247,18 +213,18 @@
     
     if (selectedSegment == 0)
     {
-        album.includePhotos=YES;
-        album.includeVideo=NO;
+        _album.includePhotos=YES;
+        _album.includeVideo=NO;
     }
     else if (selectedSegment == 1)
     {
-        album.includePhotos=NO;
-        album.includeVideo=YES;
+        _album.includePhotos=NO;
+        _album.includeVideo=YES;
     }
     else
     {
-        album.includePhotos=YES;
-        album.includeVideo=YES;
+        _album.includePhotos=YES;
+        _album.includeVideo=YES;
     }
     [tableView reloadData];
         //[self loadAssets];
@@ -271,13 +237,54 @@
     if ([[segue identifier] isEqualToString:@"showDetail"])
     {
         NSIndexPath *indexPath = [tableView indexPathForSelectedRow];
-        PSImageData* imgData=album.assets[indexPath.row];
+        PSImageData* imgData;
+        
+        if (indexPath.section==0 && _album.includeVideo)
+        {
+            imgData=_album.videos[indexPath.row];
+        }
+        else
+        {
+            imgData=_album.photos[indexPath.row];
+        }
+        
         ALAsset *asset =imgData.assett;
         [[segue destinationViewController] setAsset:asset];
     }
         //NSLog(@"Leaving %s",__PRETTY_FUNCTION__);
-    
 }
+
+#pragma mark ADBannerViewDelegate
+
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner
+{
+        //if (!isBannerVisible)
+        //{
+        //[UIView beginAnimations:@"animateAdBannerOn" context:NULL];
+            // banner is invisible now and moved out of the screen on 50 px
+        //banner.frame = CGRectOffset(banner.frame, 0, -50);
+        //[UIView commitAnimations];
+        //isBannerVisible = YES;
+        //}
+    
+        //    if (!_adBannerViewIsVisible) {
+        //_adBannerViewIsVisible = YES;
+        //[self fixupAdView:[UIDevice currentDevice].orientation];
+        //}
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
+{
+        //if (isBannerVisible)
+        //{
+        //[UIView beginAnimations:@"animateAdBannerOff" context:NULL];
+            // banner is visible and we move it out of the screen, due to connection issue
+        //banner.frame = CGRectOffset(banner.frame, 0, 50);
+        //[UIView commitAnimations];
+        //isBannerVisible = NO;
+        //}
+}
+
 
 
 

@@ -13,7 +13,7 @@
     IBOutlet UITableView *tableView;
     NSArray * assets;
     UIActivityIndicatorView *activityIndicator;
-
+    dispatch_semaphore_t sema;
 }
 
     //-(void)loadData:(UIStoryboardSegue *)segue;

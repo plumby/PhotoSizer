@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PSAlbumLoader.h"
 
 @interface PSAppDelegate : UIResponder <UIApplicationDelegate>
+{
+    dispatch_semaphore_t sema;
+}
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong) NSArray* albums;
+@property (strong) PSAlbumLoader *albumLoader;
 
 @end
