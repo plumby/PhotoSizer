@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "PSAssetLoader.h"
 
@@ -18,6 +19,7 @@
     IBOutlet UILabel *sizeLabel;
     IBOutlet UILabel *dimensionLabel;
     IBOutlet UITextView *generalTextField;
+    IBOutlet MKMapView* _mapView;
 };
 
 - (void)setAsset:(ALAsset*)newDetailItem;

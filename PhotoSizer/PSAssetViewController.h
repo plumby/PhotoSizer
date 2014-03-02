@@ -19,11 +19,16 @@
     IBOutlet UIScrollView* scrollView;
     MPMoviePlayerController* theMovie;
     BOOL isShowingLandscapeView;
-
+    BOOL zoomCheck;
 }
 
 @property (strong, nonatomic) ALAsset* asset;
 
+
+
+    //- (void)centerScrollViewContents;
+- (void)scrollViewDoubleTapped:(UITapGestureRecognizer*)recognizer;
+    //- (void)scrollViewTwoFingerTapped:(UITapGestureRecognizer*)recognizer;
 
 
 @end

@@ -21,6 +21,19 @@
     return self;
 }
 
+
+-(void)viewWillLayoutSubviews
+{
+    if (_sizeLabel.bounds.origin.x<(_photoImageView.bounds.origin.x+_photoImageView.bounds.size.width))
+    {
+        _sizeLabel.bounds = CGRectMake(_photoImageView.bounds.origin.x+_photoImageView.bounds.size.width,
+                                                 _sizeLabel.bounds.origin.y,
+                                                _sizeLabel.bounds.size.width,
+                                                _sizeLabel.bounds.size.height
+                                       );
+    }
+}
+
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
