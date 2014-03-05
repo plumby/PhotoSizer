@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2853E27D18C14F4E005B21A9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2853E27C18C14F4E005B21A9 /* MapKit.framework */; };
 		2853E28018C1DB5E005B21A9 /* MyLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 2853E27F18C1DB5E005B21A9 /* MyLocation.m */; };
+		2853E28218C3CC61005B21A9 /* Default~iphone.png in Resources */ = {isa = PBXBuildFile; fileRef = 2853E28118C3CC61005B21A9 /* Default~iphone.png */; };
 		2861C44D18A98A3E009F54E1 /* AppIcon29x29.png in Resources */ = {isa = PBXBuildFile; fileRef = 2861C43D18A98A3E009F54E1 /* AppIcon29x29.png */; };
 		2861C44E18A98A3E009F54E1 /* AppIcon29x29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2861C43E18A98A3E009F54E1 /* AppIcon29x29@2x.png */; };
 		2861C44F18A98A3E009F54E1 /* AppIcon40x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 2861C43F18A98A3E009F54E1 /* AppIcon40x40.png */; };
@@ -25,7 +26,7 @@
 		2861C45A18A98A3E009F54E1 /* AppIcon76x76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2861C44A18A98A3E009F54E1 /* AppIcon76x76@2x.png */; };
 		2861C45B18A98A3E009F54E1 /* iTunesArtwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 2861C44B18A98A3E009F54E1 /* iTunesArtwork.png */; };
 		2861C45C18A98A3E009F54E1 /* iTunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2861C44C18A98A3E009F54E1 /* iTunesArtwork@2x.png */; };
-		2861C45E18AD729B009F54E1 /* Retina Load Screen - PhotoSizer.png in Resources */ = {isa = PBXBuildFile; fileRef = 2861C45D18AD729B009F54E1 /* Retina Load Screen - PhotoSizer.png */; };
+		2861C45E18AD729B009F54E1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 2861C45D18AD729B009F54E1 /* Default.png */; };
 		2861C46018AD73C4009F54E1 /* Retina 4in Load Screen - PhotoSizer.png in Resources */ = {isa = PBXBuildFile; fileRef = 2861C45F18AD73C4009F54E1 /* Retina 4in Load Screen - PhotoSizer.png */; };
 		2861C46218AD7411009F54E1 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 2861C46118AD7411009F54E1 /* Default-568h@2x.png */; };
 		2861C46418B16457009F54E1 /* iAd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2861C46318B16457009F54E1 /* iAd.framework */; };
@@ -67,6 +68,7 @@
 		2853E27C18C14F4E005B21A9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		2853E27E18C1DB5E005B21A9 /* MyLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyLocation.h; path = ../MyLocation.h; sourceTree = "<group>"; };
 		2853E27F18C1DB5E005B21A9 /* MyLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyLocation.m; path = ../MyLocation.m; sourceTree = "<group>"; };
+		2853E28118C3CC61005B21A9 /* Default~iphone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default~iphone.png"; sourceTree = "<group>"; };
 		2861C43D18A98A3E009F54E1 /* AppIcon29x29.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon29x29.png; sourceTree = "<group>"; };
 		2861C43E18A98A3E009F54E1 /* AppIcon29x29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon29x29@2x.png"; sourceTree = "<group>"; };
 		2861C43F18A98A3E009F54E1 /* AppIcon40x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppIcon40x40.png; sourceTree = "<group>"; };
@@ -83,7 +85,7 @@
 		2861C44A18A98A3E009F54E1 /* AppIcon76x76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "AppIcon76x76@2x.png"; sourceTree = "<group>"; };
 		2861C44B18A98A3E009F54E1 /* iTunesArtwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iTunesArtwork.png; sourceTree = "<group>"; };
 		2861C44C18A98A3E009F54E1 /* iTunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iTunesArtwork@2x.png"; sourceTree = "<group>"; };
-		2861C45D18AD729B009F54E1 /* Retina Load Screen - PhotoSizer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Retina Load Screen - PhotoSizer.png"; sourceTree = "<group>"; };
+		2861C45D18AD729B009F54E1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		2861C45F18AD73C4009F54E1 /* Retina 4in Load Screen - PhotoSizer.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Retina 4in Load Screen - PhotoSizer.png"; sourceTree = "<group>"; };
 		2861C46118AD7411009F54E1 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		2861C46318B16457009F54E1 /* iAd.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = iAd.framework; path = System/Library/Frameworks/iAd.framework; sourceTree = SDKROOT; };
@@ -154,8 +156,9 @@
 		2861C43C18A98A3E009F54E1 /* App Icon [Squared] */ = {
 			isa = PBXGroup;
 			children = (
+				2853E28118C3CC61005B21A9 /* Default~iphone.png */,
 				2861C45F18AD73C4009F54E1 /* Retina 4in Load Screen - PhotoSizer.png */,
-				2861C45D18AD729B009F54E1 /* Retina Load Screen - PhotoSizer.png */,
+				2861C45D18AD729B009F54E1 /* Default.png */,
 				2861C43D18A98A3E009F54E1 /* AppIcon29x29.png */,
 				2861C43E18A98A3E009F54E1 /* AppIcon29x29@2x.png */,
 				2861C43F18A98A3E009F54E1 /* AppIcon40x40.png */,
@@ -382,6 +385,7 @@
 				2861C45318A98A3E009F54E1 /* AppIcon57x57.png in Resources */,
 				2861C44E18A98A3E009F54E1 /* AppIcon29x29@2x.png in Resources */,
 				2861C46218AD7411009F54E1 /* Default-568h@2x.png in Resources */,
+				2853E28218C3CC61005B21A9 /* Default~iphone.png in Resources */,
 				28DC85EC184FCB6900128718 /* InfoPlist.strings in Resources */,
 				2861C45118A98A3E009F54E1 /* AppIcon50x50.png in Resources */,
 				2861C45218A98A3E009F54E1 /* AppIcon50x50@2x.png in Resources */,
@@ -390,7 +394,7 @@
 				2861C45918A98A3E009F54E1 /* AppIcon76x76.png in Resources */,
 				28DC85F5184FCB6900128718 /* Main.storyboard in Resources */,
 				2861C46018AD73C4009F54E1 /* Retina 4in Load Screen - PhotoSizer.png in Resources */,
-				2861C45E18AD729B009F54E1 /* Retina Load Screen - PhotoSizer.png in Resources */,
+				2861C45E18AD729B009F54E1 /* Default.png in Resources */,
 				2861C44D18A98A3E009F54E1 /* AppIcon29x29.png in Resources */,
 				2861C45C18A98A3E009F54E1 /* iTunesArtwork@2x.png in Resources */,
 				2861C45A18A98A3E009F54E1 /* AppIcon76x76@2x.png in Resources */,
@@ -551,14 +555,14 @@
 		28DC8611184FCB6900128718 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ian Plumb (TWJNMJLS4H)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PhotoSizer/PhotoSizer-Prefix.pch";
 				INFOPLIST_FILE = "PhotoSizer/PhotoSizer-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "041CBABE-3415-4F27-B5C0-962CED0FAE0E";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -566,14 +570,14 @@
 		28DC8612184FCB6900128718 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Ian Plumb (TWJNMJLS4H)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Ian Plumb (TWJNMJLS4H)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PhotoSizer/PhotoSizer-Prefix.pch";
 				INFOPLIST_FILE = "PhotoSizer/PhotoSizer-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "041CBABE-3415-4F27-B5C0-962CED0FAE0E";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

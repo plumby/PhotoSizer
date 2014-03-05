@@ -1,10 +1,10 @@
-//
-//  PSAssetDetailViewController.m
-//  PhotoSizer
-//
-//  Created by Ian on 18/02/2014.
-//  Copyright (c) 2014 Ian. All rights reserved.
-//
+    //
+    //  PSAssetDetailViewController.m
+    //  PhotoSizer
+    //
+    //  Created by Ian on 18/02/2014.
+    //  Copyright (c) 2014 Ian. All rights reserved.
+    //
 
 #import "PSAssetDetailViewController.h"
 #import "MyLocation.h"
@@ -21,7 +21,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+            // Custom initialization
     }
     return self;
 }
@@ -29,19 +29,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+        // Do any additional setup after loading the view.
     
     CGSize imageSize=_asset.defaultRepresentation.dimensions;
     
     NSString* dimensionText=[NSString stringWithFormat:@"%4.0fx%4.0f",imageSize.width,imageSize.height];
     
+    NSString* fullDimensionText=[NSString stringWithFormat:@"Dimensions: %4.0fx%4.0f",imageSize.width,imageSize.height];
+    
     NSDate *date=[_asset valueForProperty:ALAssetPropertyDate];
         //NSString*
-    NSString* dateText=[NSDateFormatter localizedStringFromDate:date
+    NSString* dateText=[NSString stringWithFormat:@"Date: %@",[NSDateFormatter localizedStringFromDate:date
                                                       dateStyle:NSDateFormatterShortStyle
-                                                      timeStyle:NSDateFormatterShortStyle];
+                                                      timeStyle:NSDateFormatterShortStyle]];
     dateLabel.text=dateText;
-    
+    dimensionLabel.text=fullDimensionText;
     
     
     NSDictionary *dict=[_asset.defaultRepresentation metadata];
@@ -50,24 +52,30 @@
     
     CLLocation* location=[_asset valueForProperty:ALAssetPropertyLocation];
     
-    
-    CLLocationCoordinate2D zoomLocation;
-    
-    zoomLocation.latitude=location.coordinate.latitude;
-    zoomLocation.longitude=location.coordinate.longitude;
-    
-    
-        //.latitude = 39.281516;
-        //zoomLocation.longitude= -76.580806;
-    
-        // 2
-    
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 0.5*METERS_PER_MILE, 0.5*METERS_PER_MILE);
-    
-        // 3
-    [_mapView setRegion:viewRegion animated:YES];
-    
-    [self reverseGeocode:location withLabel:dimensionText];
+    if (location)
+    {
+        CLLocationCoordinate2D zoomLocation;
+        
+        zoomLocation.latitude=location.coordinate.latitude;
+        zoomLocation.longitude=location.coordinate.longitude;
+        
+        
+            //.latitude = 39.281516;
+            //zoomLocation.longitude= -76.580806;
+        
+            // 2
+        
+        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 0.5*METERS_PER_MILE, 0.5*METERS_PER_MILE);
+        
+            // 3
+        [_mapView setRegion:viewRegion animated:YES];
+        
+        [self reverseGeocode:location withLabel:dimensionText];
+    }
+    else
+    {
+            //_mapView.hidden=YES;
+    }
 }
 
 
@@ -98,7 +106,7 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+        // Dispose of any resources that can be recreated.
 }
 
 
