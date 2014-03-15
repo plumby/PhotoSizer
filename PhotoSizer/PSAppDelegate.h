@@ -12,7 +12,7 @@
 @interface PSAppDelegate : UIResponder <UIApplicationDelegate>;
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong) NSArray* albums;
+    //@property (strong) NSArray* albums;
 @property (strong) PSAlbumLoader *albumLoader;
 
 @end

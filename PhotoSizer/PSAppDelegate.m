@@ -11,7 +11,7 @@
 #import "PSAlbumData.h"
 
 @implementation PSAppDelegate
-@synthesize albums;
+    //@synthesize albums;
 @synthesize albumLoader;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -30,9 +30,16 @@
     
     [ops addObject:albumLoader];
     
-    [loadQueue addOperations:ops waitUntilFinished:TRUE];
+    [loadQueue addOperations:ops waitUntilFinished:FALSE];
+        //    __block PSAppDelegate* tempSelf=self;
+
     
-    albums=albumLoader.assetLoaders;
+        //[albumLoader setCompletionBlock:^(void)
+        //{
+        //[tempSelf performSelectorOnMainThread:@selector(albumsLoaded) withObject:nil waitUntilDone:YES];
+        //}];
+    
+        //albums=albumLoader.assetLoaders;
 }
 
 

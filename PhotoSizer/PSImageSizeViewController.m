@@ -49,7 +49,6 @@
     _album=loader.album;
 }
 
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -169,16 +168,31 @@
 
 - (void)bannerViewDidLoadAd:(ADBannerView *)banner
 {
-        //if (!isBannerVisible)
-        //{
-        //[UIView beginAnimations:@"animateAdBannerOn" context:NULL];
-            // banner is invisible now and moved out of the screen on 50 px
-        //banner.frame = CGRectOffset(banner.frame, 0, -50);
-        //[UIView commitAnimations];
-        //isBannerVisible = YES;
-        //}
+    /*
+    [UIView beginAnimations:@"animateAdBannerOff" context:NULL];
+        // banner is visible and we move it out of the screen, due to connection issue
+        //frame = CGRectOffset(banner.frame, 0, 50);
+    tableView.frame=CGRectMake(tableView.frame.origin.y, tableView.frame.origin.y, tableView.frame.size.width, tableView.frame.size.height+banner.frame.size.height);
+    banner.hidden=true;
+    [UIView commitAnimations];
+    [self.view setNeedsLayout];
+    [self.view layoutSubviews];
+    isBannerVisible = NO;
+     */
     
-        //    if (!_adBannerViewIsVisible) {
+    
+    /*
+        if (!isBannerVisible)
+        {
+        [UIView beginAnimations:@"animateAdBannerOn" context:NULL];
+            // banner is invisible now and moved out of the screen on 50 px
+        banner.frame = CGRectOffset(banner.frame, 0, -50);
+        [UIView commitAnimations];
+        isBannerVisible = YES;
+        }
+     */
+    
+        //if (!_adBannerViewIsVisible) {
         //_adBannerViewIsVisible = YES;
         //[self fixupAdView:[UIDevice currentDevice].orientation];
         //}
@@ -186,14 +200,16 @@
 
 - (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error
 {
-        //if (isBannerVisible)
-        //{
-        //[UIView beginAnimations:@"animateAdBannerOff" context:NULL];
+    /*
+        if (isBannerVisible)
+        {
+        [UIView beginAnimations:@"animateAdBannerOff" context:NULL];
             // banner is visible and we move it out of the screen, due to connection issue
-        //banner.frame = CGRectOffset(banner.frame, 0, 50);
-        //[UIView commitAnimations];
-        //isBannerVisible = NO;
-        //}
+        banner.frame = CGRectOffset(banner.frame, 0, 50);
+        [UIView commitAnimations];
+        isBannerVisible = NO;
+        }
+     */
 }
 
 

@@ -7,11 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PSAlbumLoader.h"
 
 @interface PSAlbumViewController : UIViewController  <UITableViewDataSource, UITableViewDelegate>
 {
     IBOutlet UITableView *_tableView;
     NSArray * _albums;
+    PSAlbumLoader* _albumLoader;
     UIActivityIndicatorView *_activityIndicator;
 }
 

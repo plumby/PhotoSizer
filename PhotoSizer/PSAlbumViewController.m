@@ -49,10 +49,35 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
         // Do any additional setup after loading the view.
     PSAppDelegate* app=[[UIApplication sharedApplication] delegate];
     
-    _albums=[app albums];
+    _albumLoader=app.albumLoader;
+    
+    if (_albumLoader.isExecuting)
+    {
+        __block PSAlbumViewController* tempSelf=self;
+        
+        [_albumLoader setCompletionBlock:^(void)
+         {
+             [tempSelf performSelectorOnMainThread:@selector(albumsLoaded) withObject:nil waitUntilDone:YES];
+         }];
+    }
+    else
+    {
+        _albums=_albumLoader.assetLoaders;//[app albums];
+    }
+    
+}
+
+-(void)albumsLoaded
+{
+    PSAppDelegate* app=[[UIApplication sharedApplication] delegate];
+    NSLog(@"called2");
+
+    _albums=app.albumLoader.assetLoaders;
+    [_tableView reloadData];
 }
 
 
